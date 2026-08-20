@@ -1,0 +1,19 @@
+{
+  "name": "farmakode",
+  "version": "1.0.0",
+  "description": "Visual-first OTC Medicine Safety Platform",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python -m http.server 8088",
+    "start": "npx serve ."
+  },
+  "keywords": [
+    "healthcare",
+    "medicine-safety",
+    "otc",
+    "duplicate-detection",
+    "farmakode"
+  ],
+  "author": "Farmakode Team",
+  "license": "MIT"
+}

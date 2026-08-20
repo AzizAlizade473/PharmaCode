@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farmakode — Know What You're Taking | OTC Medicine Safety</title>
+  <meta name="description" content="Visual-first OTC medicine safety platform. Instant duplicate active ingredient collision detection and safety verification.">
+  
+  <!-- Modern Clean Typography (Plus Jakarta Sans & Inter) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header class="site-header" id="header">
+    <div class="header-container">
+      <a href="#hero" class="brand-logo" aria-label="Farmakode Home">
+        <div class="logo-mark">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="6" />
+            <path d="M9 12h6" />
+            <path d="M12 9v6" />
+          </svg>
+        </div>
+        <span class="brand-name">Farmakode</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#safety-collision" class="nav-item">Safety</a>
+        <a href="#how-it-works" class="nav-item">Process</a>
+        <a href="#product-showcase" class="nav-item">Showcase</a>
+        <a href="#trust" class="nav-item">Verification</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="btn-pill btn-primary open-scanner-btn" id="headerScanBtn" aria-label="Scan Medicine">
+          <span>Scan Medicine</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 7V5a2 2 0 0 1 2-2h2" />
+            <path d="M17 3h2a2 2 0 0 1 2 2v2" />
+            <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
+            <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
+          </svg>
+        </button>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation Menu">
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Section 1: Hero -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-container">
+        
+        <!-- Headline & Short Tagline -->
+        <div class="hero-header reveal-fade">
+          <div class="badge-pill">
+            <span class="badge-dot"></span>
+            <span>OTC Duplicate Safety Engine</span>
+          </div>
+          <h1 class="hero-title">Know What You’re Taking.</h1>
+          <p class="hero-subline">Two different boxes. One hidden duplicate ingredient.</p>
+          
+          <div class="hero-cta-group">
+            <button class="btn-pill btn-large btn-primary open-scanner-btn" id="heroScanBtn">
+              <span>Scan Medicine</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" />
+              </svg>
+            </button>
+            <a href="#safety-collision" class="btn-link-icon" aria-label="View visual safety flow">
+              <span class="icon-circle">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 5v14" />
+                  <path d="m19 12-7 7-7-7" />
+                </svg>
+              </span>
+              <span>Explore Collision</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Prominent Interactive Medicine-Scanning Visual -->
+        <div class="hero-visual-stage reveal-scale">
+          <div class="hero-card-composition">
+            <!-- Background Studio Image Asset -->
+            <div class="hero-image-wrapper">
+              <img src="assets/hero_visual.jpg" alt="Farmakode intelligent OTC medicine scanning visual showing duplicate ingredient analysis" class="hero-img" id="heroImg">
+              
+              <!-- Interactive Animated Scan Beam Overlay -->
+              <div class="laser-scanner-beam"></div>
+
+              <!-- Floating UI Live Badges -->
+              <div class="floating-badge badge-left floating-anim-1">
+                <div class="badge-icon blue-glow">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                  </svg>
+                </div>
+                <div class="badge-info">
+                  <span class="badge-kicker">Package A</span>
+                  <strong>Paracetamol 500mg</strong>
+                </div>
+              </div>
+
+              <div class="floating-badge badge-right floating-anim-2">
+                <div class="badge-icon navy-glow">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+                  </svg>
+                </div>
+                <div class="badge-info">
+                  <span class="badge-kicker">Package B</span>
+                  <strong>Night Flu (Paracetamol)</strong>
+                </div>
+              </div>
+
+              <!-- Central Collision Warning Badge -->
+              <div class="floating-alert-card floating-anim-center">
+                <div class="alert-pill-header">
+                  <span class="alert-icon-pulse">⚠️</span>
+                  <span class="alert-status">Duplicate Detected</span>
+                </div>
+                <div class="alert-content">
+                  <div class="ingredient-name">Paracetamol</div>
+                  <div class="dosage-warning">1000mg Total Combined Dose</div>
+                </div>
+                <div class="safety-meter-bar">
+                  <div class="safety-fill warning"></div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 2: Visual Safety Collision Section -->
+    <section class="safety-section" id="safety-collision">
+      <div class="container">
+        
+        <!-- Section Header (Ultra Minimal) -->
+        <div class="section-kicker-center reveal-fade">
+          <span class="kicker-label">Collision Analysis</span>
+        </div>
+
+        <!-- Interactive Visual Merging Canvas -->
+        <div class="safety-visual-board reveal-fade">
+          
+          <div class="board-columns">
+            
+            <!-- Left Medicine Card -->
+            <div class="med-board-card left-card" id="cardA">
+              <div class="med-thumb-box">
+                <img src="assets/med_paracetamol.jpg" alt="Paracetamol 500mg Package" class="med-thumb-img">
+              </div>
+              <div class="med-details-minimal">
+                <span class="med-tag">Pain Relief</span>
+                <div class="ingredient-chips">
+                  <div class="chip chip-duplicate active" data-ingredient="paracetamol">
+                    <span class="chip-dot"></span>
+                    <span>Paracetamol 500mg</span>
+                  </div>
+                  <div class="chip chip-normal">
+                    <span>Caffeine 65mg</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Central Collision Analyzer -->
+            <div class="collision-hub">
+              
+              <!-- SVG Connector Stream Lines -->
+              <svg class="connector-svg" viewBox="0 0 200 160" fill="none" preserveAspectRatio="none">
+                <path d="M 0 40 C 80 40, 80 80, 100 80" stroke="url(#lineGradA)" stroke-width="3" stroke-dasharray="6 4" class="flowing-line"/>
+                <path d="M 200 40 C 120 40, 120 80, 100 80" stroke="url(#lineGradB)" stroke-width="3" stroke-dasharray="6 4" class="flowing-line"/>
+                <defs>
+                  <linearGradient id="lineGradA" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#4F46E5" stop-opacity="0.4"/>
+                    <stop offset="100%" stop-color="#EF4444"/>
+                  </linearGradient>
+                  <linearGradient id="lineGradB" x1="100%" y1="0%" x2="0%" y2="0%">
+                    <stop offset="0%" stop-color="#1E293B" stop-opacity="0.4"/>
+                    <stop offset="100%" stop-color="#EF4444"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+
+              <!-- Central Warning Result Node -->
+              <div class="collision-result-card" id="safetyResultCard">
+                <div class="warning-icon-ring">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+                    <line x1="12" y1="9" x2="12" y2="13"/>
+                    <line x1="12" y1="17" x2="12.01" y2="17"/>
+                  </svg>
+                </div>
+                <h3 class="result-ingredient">Paracetamol</h3>
+                <span class="result-badge-red">Duplicate ingredient</span>
+                <div class="result-metric">
+                  <span class="dose-tag danger">1,000 mg</span>
+                  <span class="dose-label">Combined Ingestion</span>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Right Medicine Card -->
+            <div class="med-board-card right-card" id="cardB">
+              <div class="med-thumb-box">
+                <img src="assets/med_nightflu.jpg" alt="Night Cold and Flu Package" class="med-thumb-img">
+              </div>
+              <div class="med-details-minimal">
+                <span class="med-tag">Night Cold & Flu</span>
+                <div class="ingredient-chips">
+                  <div class="chip chip-duplicate active" data-ingredient="paracetamol">
+                    <span class="chip-dot"></span>
+                    <span>Paracetamol 500mg</span>
+                  </div>
+                  <div class="chip chip-normal">
+                    <span>Phenylephrine 10mg</span>
+                  </div>
+                  <div class="chip chip-normal">
+                    <span>Diphenhydramine 25mg</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 3: How It Works (3 Pure Visual Steps) -->
+    <section class="steps-section" id="how-it-works">
+      <div class="container">
+        
+        <div class="section-kicker-center reveal-fade">
+          <span class="kicker-label">Three Visual Steps</span>
+        </div>
+
+        <div class="steps-visual-grid">
+          
+          <!-- Step 1: Scan -->
+          <div class="step-card reveal-fade" style="--delay: 0.1s">
+            <div class="step-header-compact">
+              <span class="step-num">01</span>
+              <div class="step-glyph">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                  <circle cx="12" cy="13" r="4"/>
+                </svg>
+              </div>
+            </div>
+            
+            <div class="step-illustration scan-illu">
+              <div class="scanner-frame">
+                <div class="corner-bl"></div>
+                <div class="corner-br"></div>
+                <div class="corner-tl"></div>
+                <div class="corner-tr"></div>
+                <div class="scan-target-box">
+                  <div class="barcode-lines"></div>
+                </div>
+                <div class="active-scan-line"></div>
+              </div>
+            </div>
+
+            <h3 class="step-title">Scan</h3>
+          </div>
+
+          <!-- Step Arrow 1 -->
+          <div class="step-connector-arrow reveal-fade" style="--delay: 0.2s">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#A3A1B5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </div>
+
+          <!-- Step 2: Identify -->
+          <div class="step-card reveal-fade" style="--delay: 0.3s">
+            <div class="step-header-compact">
+              <span class="step-num">02</span>
+              <div class="step-glyph">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m8 3 4 8 5-5 5 15H2L8 3z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+              </div>
+            </div>
+
+            <div class="step-illustration molecule-illu">
+              <div class="molecule-stack">
+                <div class="molecule-pill mol-1">
+                  <span class="mol-code">APAP</span>
+                  <span class="mol-name">Acetaminophen</span>
+                </div>
+                <div class="molecule-pill mol-2">
+                  <span class="mol-code">PE</span>
+                  <span class="mol-name">Phenylephrine</span>
+                </div>
+                <div class="molecule-pill mol-3">
+                  <span class="mol-code">DPH</span>
+                  <span class="mol-name">Diphenhydramine</span>
+                </div>
+              </div>
+            </div>
+
+            <h3 class="step-title">Identify</h3>
+          </div>
+
+          <!-- Step Arrow 2 -->
+          <div class="step-connector-arrow reveal-fade" style="--delay: 0.4s">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#A3A1B5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </div>
+
+          <!-- Step 3: Check -->
+          <div class="step-card reveal-fade" style="--delay: 0.5s">
+            <div class="step-header-compact">
+              <span class="step-num">03</span>
+              <div class="step-glyph warning-glyph">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+                  <line x1="12" y1="9" x2="12" y2="13"/>
+                  <line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+              </div>
+            </div>
+
+            <div class="step-illustration status-illu">
+              <div class="safety-shield-wrapper">
+                <div class="shield-pulse-ring"></div>
+                <div class="shield-badge">
+                  <span class="shield-icon">⚠️</span>
+                  <span class="shield-label">COLLISION</span>
+                </div>
+                <div class="shield-bar">
+                  <div class="bar-segment safe"></div>
+                  <div class="bar-segment alert active"></div>
+                </div>
+              </div>
+            </div>
+
+            <h3 class="step-title">Check</h3>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 4: Product Showcase -->
+    <section class="showcase-section" id="product-showcase">
+      <div class="container">
+        
+        <div class="section-kicker-center reveal-fade">
+          <span class="kicker-label">Product Database Index</span>
+        </div>
+
+        <div class="showcase-grid">
+          
+          <!-- Card 1: Paracetamol -->
+          <div class="product-card reveal-fade" style="--delay: 0.1s">
+            <div class="product-image-box">
+              <img src="assets/med_paracetamol.jpg" alt="Paracetamol 500mg" class="product-img">
+              <div class="floating-meta-chip">500mg • Analgesic</div>
+            </div>
+            <div class="product-footer">
+              <div class="product-info-compact">
+                <h4 class="product-name">Paracetamol Relief</h4>
+                <span class="product-active">Acetaminophen</span>
+              </div>
+              <button class="btn-icon-pill trigger-test-btn" data-med="paracetamol" aria-label="Compare Paracetamol">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="12" y1="5" x2="12" y2="19"/>
+                  <line x1="5" y1="12" x2="19" y2="12"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 2: Night Cold & Flu -->
+          <div class="product-card reveal-fade" style="--delay: 0.2s">
+            <div class="product-image-box">
+              <img src="assets/med_nightflu.jpg" alt="Night Cold and Flu" class="product-img">
+              <div class="floating-meta-chip">Multi-Symptom</div>
+            </div>
+            <div class="product-footer">
+              <div class="product-info-compact">
+                <h4 class="product-name">Night Cold & Flu</h4>
+                <span class="product-active">Paracetamol + Phenylephrine</span>
+              </div>
+              <button class="btn-icon-pill trigger-test-btn" data-med="nightflu" aria-label="Compare Night Cold and Flu">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="12" y1="5" x2="12" y2="19"/>
+                  <line x1="5" y1="12" x2="19" y2="12"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 3: Sinus Relief -->
+          <div class="product-card reveal-fade" style="--delay: 0.3s">
+            <div class="product-image-box">
+              <img src="assets/med_sinus.jpg" alt="Sinus Relief Decongestant" class="product-img">
+              <div class="floating-meta-chip">200mg • Decongestant</div>
+            </div>
+            <div class="product-footer">
+              <div class="product-info-compact">
+                <h4 class="product-name">Sinus Relief</h4>
+                <span class="product-active">Pseudoephedrine HCl</span>
+              </div>
+              <button class="btn-icon-pill trigger-test-btn" data-med="sinus" aria-label="Compare Sinus Relief">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="12" y1="5" x2="12" y2="19"/>
+                  <line x1="5" y1="12" x2="19" y2="12"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 4: Allergy Defense -->
+          <div class="product-card reveal-fade" style="--delay: 0.4s">
+            <div class="product-image-box">
+              <img src="assets/med_allergy.jpg" alt="Allergy Defense 24hr" class="product-img">
+              <div class="floating-meta-chip">10mg • Antihistamine</div>
+            </div>
+            <div class="product-footer">
+              <div class="product-info-compact">
+                <h4 class="product-name">Allergy Defense</h4>
+                <span class="product-active">Loratadine</span>
+              </div>
+              <button class="btn-icon-pill trigger-test-btn" data-med="allergy" aria-label="Compare Allergy Defense">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="12" y1="5" x2="12" y2="19"/>
+                  <line x1="5" y1="12" x2="19" y2="12"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 5: Trust Section -->
+    <section class="trust-section" id="trust">
+      <div class="container">
+        
+        <div class="section-kicker-center reveal-fade">
+          <span class="kicker-label">Verified Architecture</span>
+        </div>
+
+        <div class="trust-visual-grid">
+          
+          <!-- Trust Item 1 -->
+          <div class="trust-card reveal-fade" style="--delay: 0.1s">
+            <div class="trust-glyph-box">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
+                <path d="m9 12 2 2 4-4"/>
+              </svg>
+            </div>
+            <div class="trust-metric-large">120k+</div>
+            <div class="trust-label">Verified Formulations</div>
+          </div>
+
+          <!-- Trust Item 2 -->
+          <div class="trust-card reveal-fade" style="--delay: 0.2s">
+            <div class="trust-glyph-box">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="m4.93 4.93 4.24 4.24"/>
+                <path d="m14.83 9.17 4.24-4.24"/>
+                <path d="m14.83 14.83 4.24 4.24"/>
+                <path d="m9.17 14.83-4.24 4.24"/>
+                <circle cx="12" cy="12" r="4"/>
+              </svg>
+            </div>
+            <div class="trust-metric-large">100%</div>
+            <div class="trust-label">Ingredient Matching</div>
+          </div>
+
+          <!-- Trust Item 3 -->
+          <div class="trust-card reveal-fade" style="--delay: 0.3s">
+            <div class="trust-glyph-box">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+              </svg>
+            </div>
+            <div class="trust-metric-large">0.02s</div>
+            <div class="trust-label">Deterministic Rules</div>
+          </div>
+
+          <!-- Trust Item 4 -->
+          <div class="trust-card reveal-fade" style="--delay: 0.4s">
+            <div class="trust-glyph-box">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+                <polyline points="10 9 9 9 8 9"/>
+              </svg>
+            </div>
+            <div class="trust-metric-large">FDA / EMA</div>
+            <div class="trust-label">Indexed Standards</div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 6: Final CTA -->
+    <section class="final-cta-section" id="final-cta">
+      <div class="container">
+        
+        <div class="cta-monolith-card reveal-scale">
+          
+          <div class="cta-banner-image-container">
+            <img src="assets/final_cta.jpg" alt="Farmakode minimal studio composition" class="cta-bg-img">
+            <div class="cta-glass-overlay"></div>
+          </div>
+
+          <div class="cta-content-minimal">
+            <div class="cta-icon-pill">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="6" />
+                <path d="M9 12h6" />
+                <path d="M12 9v6" />
+              </svg>
+            </div>
+            <h2 class="cta-headline">Scan. Check. Know.</h2>
+            <button class="btn-pill btn-large btn-primary open-scanner-btn" id="finalStartScanBtn">
+              <span>Start Scanning</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Section 7: Footer (Very Minimal) -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      
+      <a href="#hero" class="brand-logo footer-logo" aria-label="Farmakode">
+        <div class="logo-mark">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <rect x="3" y="3" width="18" height="18" rx="6" />
+            <path d="M9 12h6" />
+            <path d="M12 9v6" />
+          </svg>
+        </div>
+        <span class="brand-name">Farmakode</span>
+      </a>
+
+      <div class="footer-links">
+        <a href="#hero" class="footer-link">Home</a>
+        <a href="javascript:void(0)" class="footer-link open-scanner-btn">Scan</a>
+        <a href="#trust" class="footer-link">About</a>
+        <a href="javascript:void(0)" class="footer-link" id="privacyLink">Privacy</a>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Interactive Live OTC Collision Scanner Simulator Modal -->
+  <div class="scanner-modal-backdrop" id="scannerModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="scanner-modal-sheet">
+      
+      <div class="modal-sheet-header">
+        <div class="modal-title-group">
+          <span class="sheet-kicker">Live Collision Simulator</span>
+          <h3 class="sheet-title">Select 2 Medicines to Compare</h3>
+        </div>
+        <button class="modal-close-btn" id="closeScannerModal" aria-label="Close Scanner">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="modal-sheet-body">
+        
+        <!-- Selection Tray -->
+        <div class="sim-selector-strip">
+          <button class="sim-med-btn active" data-id="paracetamol">
+            <span class="sim-badge">A</span>
+            <div class="sim-med-text">
+              <strong>Paracetamol 500mg</strong>
+              <small>Acetaminophen</small>
+            </div>
+          </button>
+          
+          <button class="sim-med-btn active" data-id="nightflu">
+            <span class="sim-badge">B</span>
+            <div class="sim-med-text">
+              <strong>Night Cold & Flu</strong>
+              <small>Acetaminophen + Flu</small>
+            </div>
+          </button>
+
+          <button class="sim-med-btn" data-id="sinus">
+            <span class="sim-badge">C</span>
+            <div class="sim-med-text">
+              <strong>Sinus Relief</strong>
+              <small>Pseudoephedrine</small>
+            </div>
+          </button>
+
+          <button class="sim-med-btn" data-id="allergy">
+            <span class="sim-badge">D</span>
+            <div class="sim-med-text">
+              <strong>Allergy 24hr</strong>
+              <small>Loratadine</small>
+            </div>
+          </button>
+        </div>
+
+        <!-- Simulation Viewport -->
+        <div class="sim-viewport">
+          
+          <div class="sim-scanner-target">
+            <div class="sim-reticle"></div>
+            <div class="sim-laser-line"></div>
+          </div>
+
+          <div class="sim-collision-display" id="simCollisionDisplay">
+            <!-- Populated dynamically via JS -->
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="modal-sheet-footer">
+        <button class="btn-pill btn-large btn-primary" id="runSimulationBtn">
+          <span>Re-Analyze Combination</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
