@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 1. MEDICINE DATABASE
   // ==========================================================================
   const MED_DATABASE = {
+    // Original core catalog
     panadol_extra: {
       id: 'panadol_extra',
       brand: 'Panadol Extra',
@@ -182,6 +183,351 @@ document.addEventListener('DOMContentLoaded', () => {
       activeIngredients: {
         'Ascorbic Acid (Vitamin C)': 1000
       }
+    },
+
+    // Integrated Farmakode MVP OpenFDA Dataset
+    betadine: {
+      id: 'betadine',
+      brand: 'Betadine',
+      category: 'Other OTC',
+      strength: '10% Solution',
+      description: 'Topical antiseptic microbicidal solution for preventing skin infections in minor cuts and scrapes.',
+      image: 'images/medicines/betadine.png',
+      image_url: 'https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=00002127-02bc-4c66-b0c3-ca29d8224afc&name=bottle-label.jpg',
+      local_image_path: '.\\images\\Betadine.jpg',
+      manufacturer: 'Atlantis Consumer Healthcare, Inc.',
+      generic_name_source: 'Povidone-Iodine',
+      mvp_include: true,
+      data_status: 'OpenFDA MVP Catalog',
+      activeIngredients: {
+        'Povidone-Iodine': 100
+      }
+    },
+    naproxen: {
+      id: 'naproxen',
+      brand: 'Naproxen',
+      category: 'Pain Relief',
+      strength: '220mg',
+      description: 'All-day NSAID analgesic and antipyretic for relief of muscle aches, backaches, and minor arthritis pain.',
+      image: 'images/medicines/naproxen.png',
+      image_url: 'https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=000155a8-709c-44e5-a75f-cd890f3a7caf&name=NaproxinNaStructure.jpg',
+      local_image_path: '.\\images\\Naproxen.jpg',
+      manufacturer: 'A-S Medication Solutions',
+      generic_name_source: 'Naproxen',
+      mvp_include: true,
+      data_status: 'OpenFDA MVP Catalog',
+      activeIngredients: {
+        'Naproxen': 220
+      }
+    },
+    quick_action: {
+      id: 'quick_action',
+      brand: 'Quick Action',
+      category: 'Other OTC',
+      strength: '2% Solution',
+      description: 'Targeted topical salicylic acid solution for clearing blemishes and deep pore skin renewal.',
+      image: 'images/medicines/quick_action.png',
+      image_url: 'https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=00025ea5-d15f-49d2-a52a-6c1bd8c6a033&name=mm01.jpg',
+      local_image_path: '.\\images\\Quick_Action.jpg',
+      manufacturer: 'Walmart Inc.',
+      generic_name_source: 'Salicylic Acid',
+      mvp_include: true,
+      data_status: 'OpenFDA MVP Catalog',
+      activeIngredients: {
+        'Salicylic Acid': 20
+      }
+    },
+    anti_itch: {
+      id: 'anti_itch',
+      brand: 'Anti Itch',
+      category: 'Allergy',
+      strength: '1% Cream',
+      description: 'Hydrocortisone anti-itch maximum strength cream for relief of rashes, eczema, and insect bites.',
+      image: 'images/medicines/anti_itch.png',
+      image_url: 'https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=00040bfe-001a-484e-bec0-e21e8b27f369&name=319-6e-anti-itch-cream.jpg',
+      local_image_path: '.\\images\\Anti_Itch.jpg',
+      manufacturer: 'Meijer, Inc.',
+      generic_name_source: 'Hydrocortisone',
+      mvp_include: true,
+      data_status: 'OpenFDA MVP Catalog',
+      activeIngredients: {
+        'Hydrocortisone': 10
+      }
+    },
+    pain_reliever_extra_strength: {
+      id: 'pain_reliever_extra_strength',
+      brand: 'Pain Reliever Extra Strength',
+      category: 'Pain Relief',
+      strength: '500mg',
+      description: 'Extra-strength acetaminophen caplets for temporary relief of minor aches, pains, and fever reduction.',
+      image: 'images/medicines/pain_reliever_extra_strength.png',
+      image_url: 'https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=0005aafa-08f8-4990-a54d-cc097195708f&name=best-choice-44-519-delisted-1.jpg',
+      local_image_path: '.\\images\\Pain_Reliever_Extra_Strength.jpg',
+      manufacturer: 'Valu Merchandisers Company',
+      generic_name_source: 'Acetaminophen',
+      mvp_include: true,
+      data_status: 'OpenFDA MVP Catalog',
+      activeIngredients: {
+        'Acetaminophen': 500
+      }
+    },
+    oasis_tears_lubricant_eye: {
+      id: 'oasis_tears_lubricant_eye',
+      brand: 'Oasis Tears Lubricant Eye',
+      category: 'Other OTC',
+      strength: '15mL Drops',
+      description: 'Preservative-free sterile lubricating eye drops for prolonged comfort and dry eye irritation relief.',
+      image: 'images/medicines/oasis_tears_lubricant_eye.png',
+      image_url: 'https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=00071697-4ac6-4962-8eee-388b8b52bd40&name=OASIS+TEARS+Multidose+Box.jpg',
+      local_image_path: '.\\images\\Oasis_Tears_Lubricant_Eye.jpg',
+      manufacturer: 'OASIS Medical, Inc.',
+      generic_name_source: 'Glycerin',
+      mvp_include: true,
+      data_status: 'OpenFDA MVP Catalog',
+      activeIngredients: {
+        'Glycerin': 10
+      }
+    },
+    thera_plus_feminine_anti_itch: {
+      id: 'thera_plus_feminine_anti_itch',
+      brand: 'Thera Plus Feminine Anti-Itch',
+      category: 'Other OTC',
+      strength: '20% + 3%',
+      description: 'Maximum strength soothing cream formulated with Benzocaine and Resorcinol for instant external relief.',
+      image: 'images/medicines/thera_plus_maximum_strength_feminine_anti_itch.png',
+      image_url: 'https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=0007e3ea-882b-4000-8e70-2bcec2c08613&name=Outer+Package.jpg',
+      local_image_path: '.\\images\\Thera_Plus_Maximum_Strength_Feminine_AntiItch.jpg',
+      manufacturer: 'FOURSTAR GROUP USA, INC.',
+      generic_name_source: 'Benzocaine, Resorcinol',
+      mvp_include: true,
+      data_status: 'OpenFDA MVP Catalog',
+      activeIngredients: {
+        'Benzocaine': 200,
+        'Resorcinol': 30
+      }
+    },
+    lights_povidone_iodine_scrub: {
+      id: 'lights_povidone_iodine_scrub',
+      brand: 'Lights Povidone Iodine Scrub',
+      category: 'Other OTC',
+      strength: '7.5% Scrub',
+      description: 'Surgical antiseptic hand wash and skin cleansing scrub containing microbicidal Povidone-Iodine.',
+      image: 'images/medicines/lights_povidone_iodine_scrub.png',
+      image_url: 'https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=000bf57b-1805-4746-bf1c-32856241213a&name=Povidone+iodine+Scrub6.jpg',
+      local_image_path: '.\\images\\Lights_Povindone_Iodine_Scrub.jpg',
+      manufacturer: 'Lights Medical Manufacture Co., Ltd.',
+      generic_name_source: 'Povidone-Iodine',
+      mvp_include: true,
+      data_status: 'OpenFDA MVP Catalog',
+      activeIngredients: {
+        'Povidone-Iodine': 75
+      }
+    },
+    basic_care_acetaminophen: {
+      id: 'basic_care_acetaminophen',
+      brand: 'Basic Care Acetaminophen',
+      category: 'Pain Relief',
+      strength: '500mg',
+      description: 'Fast fever reducer and pain reliever caplets with pure acetaminophen for multi-symptom body relief.',
+      image: 'images/medicines/basic_care_acetaminophen.png',
+      image_url: 'https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=00146b91-008d-4b16-95b0-6077f98821be&name=image-01.jpg',
+      local_image_path: '.\\images\\Basic_Care_Acetaminophen.jpg',
+      manufacturer: 'Amazon.com Services LLC',
+      generic_name_source: 'Acetaminophen',
+      mvp_include: true,
+      data_status: 'OpenFDA MVP Catalog',
+      activeIngredients: {
+        'Acetaminophen': 500
+      }
+    },
+    anticavity_rinse: {
+      id: 'anticavity_rinse',
+      brand: 'Anticavity Rinse',
+      category: 'Other OTC',
+      strength: '0.05% Fluoride',
+      description: 'Daily sodium fluoride oral rinse formulated to prevent dental caries and strengthen enamel.',
+      image: 'images/medicines/anticavity_rinse.png',
+      image_url: 'https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=001777fb-196c-499a-94c8-6cdcef0958e9&name=mm01.jpg',
+      local_image_path: '.\\images\\Anticavity_Rinse.jpg',
+      manufacturer: 'Meijer, Inc.',
+      generic_name_source: 'Sodium Fluoride',
+      mvp_include: true,
+      data_status: 'OpenFDA MVP Catalog',
+      activeIngredients: {
+        'Sodium Fluoride': 1
+      }
+    },
+    acid_reducer: {
+      id: 'acid_reducer',
+      brand: 'Acid Reducer',
+      category: 'Digestive',
+      strength: '20mg',
+      description: 'Delayed-release esomeprazole magnesium capsules for 24-hour treatment of frequent heartburn.',
+      image: 'images/medicines/acid_reducer.png',
+      image_url: 'https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=001817ea-906e-47f7-8605-41ba5a9abd21&name=esomeprazole-20-mg-tablets-delisted-1.jpg',
+      local_image_path: '.\\images\\Acid_Reducer.jpg',
+      manufacturer: 'CVS Pharmacy',
+      generic_name_source: 'Esomeprazole Magnesium',
+      mvp_include: true,
+      data_status: 'OpenFDA MVP Catalog',
+      activeIngredients: {
+        'Esomeprazole Magnesium': 20
+      }
+    },
+    foster_thrive_dry_eye_relief: {
+      id: 'foster_thrive_dry_eye_relief',
+      brand: 'Foster And Thrive Dry Eye Relief',
+      category: 'Other OTC',
+      strength: '15mL Drops',
+      description: 'Soothing lubricant eye drops with Polyethylene Glycol 400 to protect against eye dryness.',
+      image: 'images/medicines/foster_thrive_dry_eye_relief.png',
+      image_url: 'https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=0018ade9-5856-db6c-e063-6394a90a2ccf&name=Foster+and+Thrive+Dry+Eye+Relief+15mL+%28revised%29.jpg',
+      local_image_path: '.\\images\\Foster_And_Thrive_Dry_Eye_Relief.jpg',
+      manufacturer: 'Strategic Sourcing Services LLC',
+      generic_name_source: 'Polyethylene Glycol 400',
+      mvp_include: true,
+      data_status: 'OpenFDA MVP Catalog',
+      activeIngredients: {
+        'Polyethylene Glycol 400': 10
+      }
+    },
+    foster_thrive_advanced_relief_eye_drops: {
+      id: 'foster_thrive_advanced_relief_eye_drops',
+      brand: 'Foster And Thrive Advanced Relief Eye Drops',
+      category: 'Other OTC',
+      strength: '15mL Drops',
+      description: 'Dual-action eye drops combining PEG 400 lubricant and Tetrahydrozoline HCl redness reliever.',
+      image: 'images/medicines/foster_thrive_advanced_relief_eye_drops.png',
+      image_url: 'https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=0019cd99-b245-2ffc-e063-6294a90a9f27&name=Foster+and+Thrive+Adv+Relief+Eye+Drops+15mL+%28revised%29.jpg',
+      local_image_path: '.\\images\\Foster_And_Thrive_Advanced_Relief_Eye_Drops.jpg',
+      manufacturer: 'Strategic Sourcing Services LLC',
+      generic_name_source: 'Polyethylene Glycol 400, Tetrahydrozoline Hcl',
+      mvp_include: true,
+      data_status: 'OpenFDA MVP Catalog',
+      activeIngredients: {
+        'Polyethylene Glycol 400': 10,
+        'Tetrahydrozoline Hcl': 0.5
+      }
+    },
+    naproxen_sodium_220mg: {
+      id: 'naproxen_sodium_220mg',
+      brand: 'Naproxen Sodium 220Mg',
+      category: 'Pain Relief',
+      strength: '220mg',
+      description: 'NSAID pain reliever and fever reducer caplets providing up to 12 hours of uninterrupted pain relief.',
+      image: 'images/medicines/naproxen_sodium_220mg.png',
+      image_url: 'https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=002052df-83ac-4efd-926c-b60a8f64cec4&name=naproxen-sodium-220mg-1.jpg',
+      local_image_path: '.\\images\\Naproxen_Sodium_220Mg.jpg',
+      manufacturer: 'Command Brands, LLC',
+      generic_name_source: 'Naproxen Sodium 220Mg',
+      mvp_include: true,
+      data_status: 'OpenFDA MVP Catalog',
+      activeIngredients: {
+        'Naproxen Sodium': 220
+      }
+    },
+    leader_earwax_removal_drops: {
+      id: 'leader_earwax_removal_drops',
+      brand: 'Leader Earwax Removal Drops',
+      category: 'Other OTC',
+      strength: '6.5% Drops',
+      description: 'Gentle foaming carbamide peroxide otic drops for softening and safely removing stubborn earwax.',
+      image: 'images/medicines/leader_earwax_removal_drops.png',
+      image_url: 'https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=0022a174-8377-44af-84a9-31adb27de131&name=label+bottle.jpg',
+      local_image_path: '.\\images\\Leader_Earwax_Removal_Drops_Earwax_Removal_Aid.jpg',
+      manufacturer: 'Cardinal Health, Inc.',
+      generic_name_source: 'Carbamide Peroxide',
+      mvp_include: true,
+      data_status: 'OpenFDA MVP Catalog',
+      activeIngredients: {
+        'Carbamide Peroxide': 65
+      }
+    },
+    famotidine: {
+      id: 'famotidine',
+      brand: 'Famotidine',
+      category: 'Digestive',
+      strength: '20mg',
+      description: 'H2-blocker acid reducer tablets for prevention and fast relief of heartburn and acid indigestion.',
+      image: 'images/medicines/famotidine.png',
+      image_url: 'https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=002875d2-8c30-2d2e-e063-6294a90ae01e&name=72789331.jpg',
+      local_image_path: '.\\images\\Famotidine.jpg',
+      manufacturer: 'PD-Rx Pharmaceuticals, Inc.',
+      generic_name_source: 'Famotidine',
+      mvp_include: true,
+      data_status: 'OpenFDA MVP Catalog',
+      activeIngredients: {
+        'Famotidine': 20
+      }
+    },
+    equate_honey_lemon_cough_drops: {
+      id: 'equate_honey_lemon_cough_drops',
+      brand: 'Equate Honey Lemon Cough Drops',
+      category: 'Cold & Flu',
+      strength: '7.5mg Menthol',
+      description: 'Menthol throat lozenges providing fast soothing relief for coughs and irritated sore throats.',
+      image: 'images/medicines/equate_honey_lemon_cough_drops.png',
+      image_url: 'https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=0028be18-5162-ff51-e063-6294a90ae517&name=00289617-86f5-7a52-e063-6294a90a09b1.jpg',
+      local_image_path: '.\\images\\Equate_Honey_Lemon_Cough_Drops.jpg',
+      manufacturer: 'WalMart',
+      generic_name_source: 'Menthol',
+      mvp_include: true,
+      data_status: 'OpenFDA MVP Catalog',
+      activeIngredients: {
+        'Menthol': 7.5
+      }
+    },
+    dragon_pain_relieving_balm: {
+      id: 'dragon_pain_relieving_balm',
+      brand: 'Dragon Pain Relieving Balm',
+      category: 'Pain Relief',
+      strength: '11% + 10%',
+      description: 'Topical analgesic balm with Camphor and Menthol for deep penetrating muscle and joint pain relief.',
+      image: 'images/medicines/dragon_pain_relieving_balm.png',
+      image_url: 'https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=002997d0-3176-3918-e063-6294a90a4408&name=1.jpg',
+      local_image_path: '.\\images\\Dragon_Pain_Relieving_Balm.jpg',
+      manufacturer: 'Americanna Wellness, Inc.',
+      generic_name_source: 'Camphor, Menthol',
+      mvp_include: true,
+      data_status: 'OpenFDA MVP Catalog',
+      activeIngredients: {
+        'Camphor': 110,
+        'Menthol': 100
+      }
+    },
+    eminence_radiant_protection_spf_fluid: {
+      id: 'eminence_radiant_protection_spf_fluid',
+      brand: 'Eminence Radiant Protection Spf Fluid',
+      category: 'Other OTC',
+      strength: 'SPF 30',
+      description: 'Mineral broad-spectrum SPF fluid formulated with pure non-nano Zinc Oxide for daily skin defense.',
+      image: 'images/medicines/eminence_radiant_protection_spf_fluid.png',
+      image_url: 'https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=002a4766-0c7e-4ec7-e063-6294a90a78d8&name=RadiantSPFRetailBox.jpg',
+      local_image_path: '.\\images\\Eminence_Radiant_Protection_Spf_Fluid.jpg',
+      manufacturer: 'Eminence Organic Skin Care',
+      generic_name_source: 'Zinc Oxide',
+      mvp_include: true,
+      data_status: 'OpenFDA MVP Catalog',
+      activeIngredients: {
+        'Zinc Oxide': 150
+      }
+    },
+    foster_thrive_original_formula_eye_drops: {
+      id: 'foster_thrive_original_formula_eye_drops',
+      brand: 'Foster And Thrive Original Formula Eye Drops',
+      category: 'Other OTC',
+      strength: '0.05% Drops',
+      description: 'Fast redness reliever sterile eye drops containing Tetrahydrozoline HCl for immediate clear eyes.',
+      image: 'images/medicines/foster_thrive_original_formula_eye_drops.png',
+      image_url: 'https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=002da62b-aec6-8e2a-e063-6294a90a5efc&name=Foster+and+Thrive+Original+Formula+Eye+Drops+15mL.jpg',
+      local_image_path: '.\\images\\Foster_And_Thrive_Original_Formula_Eye_Drops.jpg',
+      manufacturer: 'Strategic Sourcing Services LLC',
+      generic_name_source: 'Tetrahydrozoline Hcl',
+      mvp_include: true,
+      data_status: 'OpenFDA MVP Catalog',
+      activeIngredients: {
+        'Tetrahydrozoline Hcl': 0.5
+      }
     }
   };
 
@@ -195,20 +541,64 @@ document.addEventListener('DOMContentLoaded', () => {
     'Other OTC': 'assets/med_sinus.jpg'
   };
 
+  // Ingredient alias normalizer helper
+  const INGREDIENT_ALIASES = {
+    'paracetamol': 'Paracetamol / Acetaminophen (APAP)',
+    'acetaminophen': 'Paracetamol / Acetaminophen (APAP)',
+    'naproxen': 'Naproxen',
+    'naproxen sodium': 'Naproxen',
+    'naproxen sodium 220mg': 'Naproxen',
+    'ibuprofen': 'Ibuprofen',
+    'povidone-iodine': 'Povidone-Iodine',
+    'polyethylene glycol 400': 'Polyethylene Glycol 400',
+    'tetrahydrozoline hcl': 'Tetrahydrozoline HCl',
+    'tetrahydrozoline': 'Tetrahydrozoline HCl',
+    'menthol': 'Menthol',
+    'salicylic acid': 'Salicylic Acid',
+    'hydrocortisone': 'Hydrocortisone',
+    'esomeprazole magnesium': 'Esomeprazole Magnesium',
+    'famotidine': 'Famotidine',
+    'omeprazole': 'Omeprazole',
+    'pseudoephedrine hcl': 'Pseudoephedrine HCl',
+    'phenylephrine hcl': 'Phenylephrine HCl',
+    'diphenhydramine hcl': 'Diphenhydramine HCl',
+    'loratadine': 'Loratadine',
+    'cetirizine hcl': 'Cetirizine HCl'
+  };
+
+  function getCanonicalIngredientName(name) {
+    const clean = (name || '').trim().toLowerCase();
+    return INGREDIENT_ALIASES[clean] || name;
+  }
+
+  function getIngredientDose(med, ingredientName) {
+    if (!med || !med.activeIngredients) return undefined;
+    if (med.activeIngredients[ingredientName] !== undefined) {
+      return med.activeIngredients[ingredientName];
+    }
+    const targetCanonical = getCanonicalIngredientName(ingredientName);
+    for (const [key, val] of Object.entries(med.activeIngredients)) {
+      if (getCanonicalIngredientName(key) === targetCanonical) {
+        return val;
+      }
+    }
+    return undefined;
+  }
+
   // ==========================================================================
   // 2. INTERACTION RULES ENGINE
   // ==========================================================================
   const INTERACTION_RULES = [
     {
-      id: 'duplicate_paracetamol',
+      id: 'duplicate_paracetamol_acetaminophen',
       type: 'duplicate',
-      ingredient: 'Paracetamol',
-      title: 'Duplicate Paracetamol',
+      ingredientAliases: ['Paracetamol', 'Acetaminophen'],
+      title: 'Duplicate Paracetamol / Acetaminophen',
       typeLabel: '🚨 Duplicate Active Ingredient',
       explanation: (medA, medB, doseA, doseB) =>
-        `Both <strong>${medA}</strong> and <strong>${medB}</strong> contain Paracetamol. Combined dose: <strong>${doseA + doseB}mg</strong>. The recommended single dose is 500–1000mg. Combined ingestion risks exceeding the daily safe limit of 4000mg and stresses liver function.`,
-      ruleSource: 'WHO Essential Medicines / NHS Paracetamol Guidelines',
-      ruleDetail: 'Duplicate active analgesic ingredient — overdose risk. Max single dose 1000mg; max daily 4000mg.'
+        `Both <strong>${medA}</strong> and <strong>${medB}</strong> contain Paracetamol/Acetaminophen (APAP).${doseA && doseB ? ` Combined dose: <strong>${doseA + doseB}mg</strong>.` : ''} The recommended maximum single dose is 1,000mg and max daily limit is 4,000mg. Taking multiple APAP products simultaneously creates a severe acute hepatotoxicity (liver injury) risk.`,
+      ruleSource: 'FDA Acetaminophen Safety Warning / WHO Essential Medicines',
+      ruleDetail: 'Duplicate APAP analgesic ingredient — acute liver injury risk. Max single dose 1000mg; max daily 4000mg.'
     },
     {
       id: 'duplicate_ibuprofen',
@@ -217,9 +607,31 @@ document.addEventListener('DOMContentLoaded', () => {
       title: 'Duplicate Ibuprofen (NSAID)',
       typeLabel: '🚨 Duplicate NSAID',
       explanation: (medA, medB, doseA, doseB) =>
-        `Both <strong>${medA}</strong> and <strong>${medB}</strong> contain Ibuprofen. Combined dose: <strong>${doseA + doseB}mg</strong>. Taking two NSAID sources simultaneously increases the risk of GI bleeding and renal toxicity without therapeutic benefit.`,
+        `Both <strong>${medA}</strong> and <strong>${medB}</strong> contain Ibuprofen. Combined dose: <strong>${doseA + doseB}mg</strong>. Taking two NSAID sources simultaneously increases the risk of GI bleeding, ulceration, and renal toxicity without therapeutic benefit.`,
       ruleSource: 'BNF / FDA NSAID Safety Label',
       ruleDetail: 'Duplicate NSAID. Do not combine without physician guidance — GI and renal risk.'
+    },
+    {
+      id: 'duplicate_naproxen',
+      type: 'duplicate',
+      ingredientAliases: ['Naproxen', 'Naproxen Sodium', 'Naproxen Sodium 220Mg'],
+      title: 'Duplicate Naproxen (NSAID)',
+      typeLabel: '🚨 Duplicate NSAID',
+      explanation: (medA, medB, doseA, doseB) =>
+        `Both <strong>${medA}</strong> and <strong>${medB}</strong> contain Naproxen / Naproxen Sodium. Combined dose: <strong>${doseA + doseB}mg</strong>. Stacking naproxen formulations provides no extra pain relief while doubling the risk of stomach ulcers and kidney stress.`,
+      ruleSource: 'FDA NSAID Medication Guide / American College of Rheumatology',
+      ruleDetail: 'Duplicate Naproxen NSAID. High cumulative dose increases gastric perforation and cardiovascular risks.'
+    },
+    {
+      id: 'nsaid_cross_nsaid',
+      type: 'duplicate',
+      ingredients: ['Ibuprofen', 'Naproxen'],
+      title: 'Dual NSAID Combination (Ibuprofen + Naproxen)',
+      typeLabel: '🚨 Duplicate NSAID Class',
+      explanation: (medA, medB) =>
+        `<strong>${medA}</strong> and <strong>${medB}</strong> are both Nonsteroidal Anti-inflammatory Drugs (NSAIDs). Combining different NSAIDs compounds gastric mucosal toxicity and increases cardiovascular event risk without additive analgesic benefit.`,
+      ruleSource: 'FDA Black Box Warning NSAIDs / NICE Guidelines',
+      ruleDetail: 'Concurrent use of multiple systemic NSAIDs is contraindicated due to increased GI toxicity.'
     },
     {
       id: 'nsaid_aspirin',
@@ -228,9 +640,9 @@ document.addEventListener('DOMContentLoaded', () => {
       title: 'Ibuprofen Blocks Aspirin',
       typeLabel: '⚠️ Known Interaction',
       explanation: (medA, medB) =>
-        `<strong>${medA}</strong> (Ibuprofen) competitively binds to COX-1 receptors, blocking the cardioprotective antiplatelet effect of <strong>${medB}</strong> (Aspirin). If taking low-dose aspirin for heart protection, ibuprofen should be taken at least 2 hours after aspirin.`,
+        `<strong>${medA}</strong> (Ibuprofen) competitively binds to platelet COX-1 receptors, blocking the cardioprotective antiplatelet effect of <strong>${medB}</strong> (Aspirin). If taking low-dose aspirin for cardiovascular protection, separate doses by at least 2 hours.`,
       ruleSource: 'FDA Drug Safety Communication 2006 / NEJM',
-      ruleDetail: 'COX-1 competitive binding. Ibuprofen blocks aspirin\'s antiplatelet effect. Take aspirin first, wait 2+ hours.'
+      ruleDetail: 'COX-1 competitive binding. Ibuprofen blocks aspirin antiplatelet effect. Take aspirin first, wait 2+ hours.'
     },
     {
       id: 'dual_antihistamine',
@@ -239,7 +651,7 @@ document.addEventListener('DOMContentLoaded', () => {
       title: 'Dual Antihistamine Load',
       typeLabel: '⚠️ Same Therapeutic Class',
       explanation: (medA, medB) =>
-        `<strong>${medA}</strong> and <strong>${medB}</strong> are both second-generation H1 antihistamines. Combining them doubles the antihistamine load without additional benefit, and increases the risk of sedation, dry mouth and urinary retention.`,
+        `<strong>${medA}</strong> and <strong>${medB}</strong> are both second-generation H1 antihistamines. Combining them doubles the antihistamine load without additional therapeutic benefit and increases side effects like dry mouth, drowsiness, and urinary retention.`,
       ruleSource: 'BNF Antihistamine Guidance / WHO',
       ruleDetail: 'Same receptor class (H1 antihistamine). No clinical benefit from combining. Doubled side-effect risk.'
     },
@@ -250,7 +662,7 @@ document.addEventListener('DOMContentLoaded', () => {
       title: 'Timing Caution: Antihistamine + NSAID',
       typeLabel: '🕐 Timing Conflict',
       explanation: (medA, medB) =>
-        `<strong>${medA}</strong> (containing Diphenhydramine) combined with <strong>${medB}</strong> (Ibuprofen) may reduce ibuprofen absorption rate due to anticholinergic effects slowing gastric emptying. Recommended: separate doses by at least 2–4 hours.`,
+        `<strong>${medA}</strong> (containing Diphenhydramine) combined with <strong>${medB}</strong> (Ibuprofen) may reduce ibuprofen absorption rate due to anticholinergic slowing of gastric emptying. Recommended: separate doses by at least 2–4 hours.`,
       ruleSource: 'Clinical Pharmacokinetics — Anticholinergic GI Effects',
       ruleDetail: 'Anticholinergic slowing of gastric emptying reduces NSAID absorption rate. Stagger doses by 2–4h.'
     },
@@ -261,9 +673,64 @@ document.addEventListener('DOMContentLoaded', () => {
       title: 'Duplicate Decongestant (Phenylephrine)',
       typeLabel: '🚨 Duplicate Decongestant',
       explanation: (medA, medB, doseA, doseB) =>
-        `Both <strong>${medA}</strong> and <strong>${medB}</strong> contain Phenylephrine HCl. Combined dose: <strong>${doseA + doseB}mg</strong>. Excessive phenylephrine can cause hypertension, palpitations and cardiovascular stress.`,
+        `Both <strong>${medA}</strong> and <strong>${medB}</strong> contain Phenylephrine HCl. Combined dose: <strong>${doseA + doseB}mg</strong>. Excessive phenylephrine can cause elevated blood pressure, palpitations, and cardiovascular stress.`,
       ruleSource: 'FDA OTC Monograph Decongestants',
       ruleDetail: 'Duplicate sympathomimetic. Cardiovascular risk from combined alpha-agonist stimulation.'
+    },
+    {
+      id: 'duplicate_povidone_iodine',
+      type: 'duplicate',
+      ingredient: 'Povidone-Iodine',
+      title: 'Duplicate Antiseptic (Povidone-Iodine)',
+      typeLabel: '🚨 Duplicate Antiseptic',
+      explanation: (medA, medB) =>
+        `Both <strong>${medA}</strong> and <strong>${medB}</strong> contain Povidone-Iodine. Using multiple iodine antiseptics simultaneously increases localized dermal irritation and systemic iodine absorption.`,
+      ruleSource: 'FDA Topical Antimicrobial Monograph',
+      ruleDetail: 'Duplicate topical antiseptic. Monitor for skin sensitivity and localized irritation.'
+    },
+    {
+      id: 'duplicate_tetrahydrozoline',
+      type: 'duplicate',
+      ingredientAliases: ['Tetrahydrozoline Hcl', 'Tetrahydrozoline'],
+      title: 'Duplicate Decongestant (Tetrahydrozoline)',
+      typeLabel: '🚨 Duplicate Vasoconstrictor',
+      explanation: (medA, medB) =>
+        `Both <strong>${medA}</strong> and <strong>${medB}</strong> contain Tetrahydrozoline HCl. Repeated simultaneous administration of ocular vasoconstrictors increases the risk of severe rebound hyperemia (rebound redness) and ocular dryness.`,
+      ruleSource: 'FDA OTC Ophthalmic Drug Products Monograph',
+      ruleDetail: 'Duplicate ophthalmic vasoconstrictor. High risk of rebound conjunctival hyperemia.'
+    },
+    {
+      id: 'duplicate_peg400',
+      type: 'duplicate',
+      ingredient: 'Polyethylene Glycol 400',
+      title: 'Duplicate Eye Lubricant (PEG 400)',
+      typeLabel: '⚠️ Duplicate Formulation',
+      explanation: (medA, medB) =>
+        `Both <strong>${medA}</strong> and <strong>${medB}</strong> contain Polyethylene Glycol 400. Using multiple identical lubricant eye drop formulations concurrently is redundant and unnecessary.`,
+      ruleSource: 'FDA Ophthalmic Demulcent Monograph',
+      ruleDetail: 'Redundant ophthalmic lubricant formulations.'
+    },
+    {
+      id: 'duplicate_menthol',
+      type: 'duplicate',
+      ingredient: 'Menthol',
+      title: 'Duplicate Menthol Exposure',
+      typeLabel: '⚠️ Duplicate Active Ingredient',
+      explanation: (medA, medB) =>
+        `Both <strong>${medA}</strong> and <strong>${medB}</strong> contain Menthol across different delivery routes (oral lozenge and topical balm). Monitor cumulative exposure to avoid mucous membrane irritation.`,
+      ruleSource: 'FDA OTC Oral Health / Topical Analgesic Monograph',
+      ruleDetail: 'Duplicate menthol formulation across oral and topical routes.'
+    },
+    {
+      id: 'dual_acid_suppression',
+      type: 'interaction',
+      ingredients: ['Esomeprazole Magnesium', 'Famotidine'],
+      title: 'Dual Acid Suppression (PPI + H2RA)',
+      typeLabel: '⚠️ Concurrent Acid Reducer',
+      explanation: (medA, medB) =>
+        `<strong>${medA}</strong> (Proton Pump Inhibitor) and <strong>${medB}</strong> (H2-Receptor Antagonist) both inhibit gastric acid production. Simultaneous OTC use without medical supervision is not recommended due to profound hypochlorhydria risk.`,
+      ruleSource: 'American College of Gastroenterology (ACG) Clinical Guidelines',
+      ruleDetail: 'Dual acid suppression therapy. Consult a physician before combining OTC acid reducers.'
     }
   ];
 
@@ -333,12 +800,40 @@ document.addEventListener('DOMContentLoaded', () => {
         const medA = meds[i];
         const medB = meds[j];
 
-        // Check each interaction rule
+        // 1. Check specialized interaction rules
         for (const rule of INTERACTION_RULES) {
+          // Duplicate rule with ingredientAliases
+          if (rule.ingredientAliases && rule.ingredientAliases.length > 0) {
+            let doseA = undefined;
+            let doseB = undefined;
+            for (const alias of rule.ingredientAliases) {
+              const dA = getIngredientDose(medA, alias);
+              const dB = getIngredientDose(medB, alias);
+              if (dA !== undefined && doseA === undefined) doseA = dA;
+              if (dB !== undefined && doseB === undefined) doseB = dB;
+            }
+            if (doseA !== undefined && doseB !== undefined) {
+              const alreadyFlagged = warnings.some(w =>
+                w.rule.id === rule.id &&
+                ((w.medA.id === medA.id && w.medB.id === medB.id) ||
+                 (w.medA.id === medB.id && w.medB.id === medA.id))
+              );
+              if (!alreadyFlagged) {
+                warnings.push({
+                  rule,
+                  medA,
+                  medB,
+                  doseA,
+                  doseB,
+                  key: `${rule.id}_${medA.id}_${medB.id}`
+                });
+              }
+            }
+          }
           // Duplicate single ingredient rule
-          if (rule.ingredient) {
-            const doseA = medA.activeIngredients[rule.ingredient];
-            const doseB = medB.activeIngredients[rule.ingredient];
+          else if (rule.ingredient) {
+            const doseA = getIngredientDose(medA, rule.ingredient);
+            const doseB = getIngredientDose(medB, rule.ingredient);
             if (doseA !== undefined && doseB !== undefined) {
               const alreadyFlagged = warnings.some(w =>
                 w.rule.id === rule.id &&
@@ -360,10 +855,10 @@ document.addEventListener('DOMContentLoaded', () => {
           // Two-ingredient interaction rule
           else if (rule.ingredients && rule.ingredients.length === 2) {
             const [ingA, ingB] = rule.ingredients;
-            const medAhasA = medA.activeIngredients[ingA] !== undefined;
-            const medAhasB = medA.activeIngredients[ingB] !== undefined;
-            const medBhasA = medB.activeIngredients[ingA] !== undefined;
-            const medBhasB = medB.activeIngredients[ingB] !== undefined;
+            const medAhasA = getIngredientDose(medA, ingA) !== undefined;
+            const medAhasB = getIngredientDose(medA, ingB) !== undefined;
+            const medBhasA = getIngredientDose(medB, ingA) !== undefined;
+            const medBhasB = getIngredientDose(medB, ingB) !== undefined;
 
             const crossMatch = (medAhasA && medBhasB) || (medAhasB && medBhasA);
 
@@ -381,6 +876,46 @@ document.addEventListener('DOMContentLoaded', () => {
                   doseA: null,
                   doseB: null,
                   key: `${rule.id}_${medA.id}_${medB.id}`
+                });
+              }
+            }
+          }
+        }
+
+        // 2. Generic duplicate ingredient detection fallback
+        const ingredientsA = Object.keys(medA.activeIngredients || {});
+        const ingredientsB = Object.keys(medB.activeIngredients || {});
+
+        for (const ingA of ingredientsA) {
+          const canonicalA = getCanonicalIngredientName(ingA);
+          for (const ingB of ingredientsB) {
+            const canonicalB = getCanonicalIngredientName(ingB);
+            if (canonicalA === canonicalB) {
+              const alreadyFlagged = warnings.some(w =>
+                (w.medA.id === medA.id && w.medB.id === medB.id) ||
+                (w.medA.id === medB.id && w.medB.id === medA.id)
+              );
+              if (!alreadyFlagged) {
+                const doseA = medA.activeIngredients[ingA];
+                const doseB = medB.activeIngredients[ingB];
+                const dynRule = {
+                  id: `dup_gen_${canonicalA.toLowerCase().replace(/[^a-z0-9]/g, '_')}`,
+                  type: 'duplicate',
+                  ingredient: canonicalA,
+                  title: `Duplicate ${canonicalA}`,
+                  typeLabel: '🚨 Duplicate Active Ingredient',
+                  explanation: (mA, mB, dA, dB) =>
+                    `Both <strong>${mA}</strong> and <strong>${mB}</strong> contain ${canonicalA}.${dA && dB ? ` Combined dose: <strong>${dA + dB}mg</strong>.` : ''} Taking multiple products with the same active ingredient creates an unintended stacked dose hazard.`,
+                  ruleSource: 'FDA Drug Safety Standards / OpenFDA Monograph',
+                  ruleDetail: `Duplicate active ingredient (${canonicalA}). Avoid combining without physician guidance.`
+                };
+                warnings.push({
+                  rule: dynRule,
+                  medA,
+                  medB,
+                  doseA: typeof doseA === 'number' ? doseA : null,
+                  doseB: typeof doseB === 'number' ? doseB : null,
+                  key: `${dynRule.id}_${medA.id}_${medB.id}`
                 });
               }
             }
@@ -519,7 +1054,12 @@ document.addEventListener('DOMContentLoaded', () => {
       navigateTo(page);
       // Close mobile nav if open
       const navLinks = document.getElementById('navLinks');
+      const mobileToggle = document.getElementById('mobileToggle');
       if (navLinks) navLinks.classList.remove('mobile-open');
+      if (mobileToggle) {
+        mobileToggle.classList.remove('active');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+      }
     }
   });
 
@@ -554,15 +1094,26 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================================================
   const header = document.getElementById('header');
   window.addEventListener('scroll', () => {
-    header.style.padding = window.scrollY > 20 ? '10px 24px' : '16px 24px';
+    header.classList.toggle('scrolled', window.scrollY > 20);
   }, { passive: true });
 
   // Mobile toggle
   const mobileToggle = document.getElementById('mobileToggle');
   const navLinksEl = document.getElementById('navLinks');
   if (mobileToggle && navLinksEl) {
-    mobileToggle.addEventListener('click', () => {
-      navLinksEl.classList.toggle('mobile-open');
+    mobileToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = navLinksEl.classList.toggle('mobile-open');
+      mobileToggle.classList.toggle('active', isOpen);
+      mobileToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    document.addEventListener('click', (e) => {
+      if (navLinksEl.classList.contains('mobile-open') && !e.target.closest('#header')) {
+        navLinksEl.classList.remove('mobile-open');
+        mobileToggle.classList.remove('active');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+      }
     });
   }
 
@@ -587,7 +1138,7 @@ document.addEventListener('DOMContentLoaded', () => {
         pills.forEach(p => p.classList.remove('active'));
         pill.classList.add('active');
         activeCategory = pill.getAttribute('data-category');
-        renderProductGrid();
+        renderProductGrid(true);
       };
     });
   }
@@ -675,137 +1226,250 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function renderProductGrid() {
+  function getCardState(med) {
+    const inCabinet = Cabinet.has(med.id);
+    const { active, hypothetical } = getConflictsForMed(med.id);
+    const hasActiveConflict = inCabinet && active.length > 0;
+    const isSafeInCabinet = inCabinet && active.length === 0;
+    const wouldConflict = !inCabinet && hypothetical.length > 0;
+    return { inCabinet, active, hypothetical, hasActiveConflict, isSafeInCabinet, wouldConflict };
+  }
+
+  function getCardStateClass(state) {
+    if (state.hasActiveConflict) return 'in-cabinet has-conflict';
+    if (state.isSafeInCabinet) return 'in-cabinet is-safe';
+    if (state.wouldConflict) return 'would-conflict';
+    return '';
+  }
+
+  function getCardBadgeHtml(state) {
+    if (state.hasActiveConflict) {
+      return `
+        <div class="card-conflict-badge" title="Contradiction in your cabinet">
+          <span class="badge-pulse-dot"></span>
+          <span>🚨 Contradiction</span>
+        </div>
+      `;
+    }
+    if (state.wouldConflict) {
+      return `
+        <div class="card-potential-badge" title="Conflicts with a medicine in your cabinet">
+          <span>⚠️ Conflict Warning</span>
+        </div>
+      `;
+    }
+    if (state.isSafeInCabinet) {
+      return `
+        <div class="card-safe-badge">
+          <span>✓ In Cabinet</span>
+        </div>
+      `;
+    }
+    return '';
+  }
+
+  function getCardConflictSnippetHtml(state) {
+    if (state.hasActiveConflict) {
+      const topConflict = state.active[0];
+      return `
+        <div class="card-conflict-callout">
+          <div class="conflict-callout-header">🚨 ${topConflict.rule.title}</div>
+          <div class="conflict-callout-detail">
+            Conflicts with <strong>${topConflict.otherMed.brand}</strong>${topConflict.combinedDose ? ` (${topConflict.combinedDose} combined)` : ''}.
+          </div>
+        </div>
+      `;
+    }
+    if (state.wouldConflict) {
+      const topHypo = state.hypothetical[0];
+      return `
+        <div class="card-potential-callout">
+          <div class="potential-callout-header">⚠️ Warning: Contradiction</div>
+          <div class="potential-callout-detail">
+            Adding this conflicts with <strong>${topHypo.otherMed.brand}</strong> in cabinet (${topHypo.rule.title}).
+          </div>
+        </div>
+      `;
+    }
+    return '';
+  }
+
+  function getCardActionButtonsHtml(med, state) {
+    if (state.hasActiveConflict) {
+      return `
+        <button class="btn-add-medicine in-conflict" data-med-id="${med.id}" aria-label="Conflict detected in cabinet">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span>Contradiction</span>
+        </button>
+        <button class="btn-remove-mini" data-remove-med-id="${med.id}" title="Remove from cabinet" aria-label="Remove ${med.brand}">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      `;
+    }
+    if (state.isSafeInCabinet) {
+      return `
+        <button class="btn-add-medicine added" data-med-id="${med.id}" aria-label="Added to cabinet">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>Added</span>
+        </button>
+        <button class="btn-remove-mini" data-remove-med-id="${med.id}" title="Remove from cabinet" aria-label="Remove ${med.brand}">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      `;
+    }
+    if (state.wouldConflict) {
+      return `
+        <button class="btn-add-medicine warn-add" data-med-id="${med.id}" aria-label="Add medicine (causes conflict)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          <span>+ Add (+Conflict)</span>
+        </button>
+      `;
+    }
+    return `
+      <button class="btn-add-medicine" data-med-id="${med.id}" aria-label="Add to cabinet">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        <span>Add</span>
+      </button>
+    `;
+  }
+
+  function updateCardInPlace(card, med) {
+    const state = getCardState(med);
+    const stateClass = getCardStateClass(state);
+
+    card.className = `home-product-card ${stateClass}`.trim();
+    // Prevent CSS entrance animation from re-triggering on updates
+    card.style.animation = 'none';
+    card.style.opacity = '1';
+    card.style.transform = 'none';
+
+    const badgeSlot = card.querySelector('.card-badge-slot');
+    if (badgeSlot) badgeSlot.innerHTML = getCardBadgeHtml(state);
+
+    const conflictHeaderSlot = card.querySelector('.card-header-conflict-slot');
+    if (conflictHeaderSlot) {
+      conflictHeaderSlot.innerHTML = state.hasActiveConflict ? `<span class="danger-pill-mini">Conflict</span>` : '';
+    }
+
+    const conflictSlot = card.querySelector('.card-conflict-slot');
+    if (conflictSlot) conflictSlot.innerHTML = getCardConflictSnippetHtml(state);
+
+    const actionSlot = card.querySelector('.card-action-slot');
+    if (actionSlot) actionSlot.innerHTML = getCardActionButtonsHtml(med, state);
+  }
+
+  function updateAllProductCardsInPlace() {
     const grid = document.getElementById('homeProductGrid');
     if (!grid) return;
+    const cards = grid.querySelectorAll('.home-product-card');
+    cards.forEach(card => {
+      const medId = card.getAttribute('data-med-id');
+      const med = MED_DATABASE[medId];
+      if (med) updateCardInPlace(card, med);
+    });
+  }
+
+  let isGridEventsAttached = false;
+  function ensureGridEvents(grid) {
+    if (isGridEventsAttached || !grid) return;
+    isGridEventsAttached = true;
+
+    grid.addEventListener('click', (e) => {
+      const card = e.target.closest('.home-product-card');
+      if (!card) return;
+      const medId = card.getAttribute('data-med-id');
+      const med = MED_DATABASE[medId];
+      if (!med) return;
+
+      const removeBtn = e.target.closest('.btn-remove-mini');
+      if (removeBtn) {
+        e.stopPropagation();
+        Cabinet.remove(med.id);
+        updateAllProductCardsInPlace();
+        updateHomeSafetyBanner();
+        updateNavBadges();
+        return;
+      }
+
+      const addBtn = e.target.closest('.btn-add-medicine');
+      if (addBtn) {
+        e.stopPropagation();
+        const inCabinet = Cabinet.has(med.id);
+        const { active, hypothetical } = getConflictsForMed(med.id);
+        const hasActiveConflict = inCabinet && active.length > 0;
+        const wouldConflict = !inCabinet && hypothetical.length > 0;
+
+        if (hasActiveConflict) {
+          navigateTo('safety');
+          return;
+        }
+
+        if (!inCabinet) {
+          Cabinet.add(med.id);
+          if (wouldConflict) {
+            showConflictToast(med.brand, hypothetical);
+          } else {
+            showAddToast(med.brand);
+          }
+          updateAllProductCardsInPlace();
+          updateHomeSafetyBanner();
+          updateNavBadges();
+        }
+        return;
+      }
+
+      // Clicking detail icon or the card body opens detail modal
+      openDetailModal(med.id);
+    });
+  }
+
+  function renderProductGrid(forceRebuild = false) {
+    const grid = document.getElementById('homeProductGrid');
+    if (!grid) return;
+
+    ensureGridEvents(grid);
+
+    // If grid is already rendered for activeCategory and not a forced rebuild, update states in-place
+    if (!forceRebuild && grid.getAttribute('data-rendered-category') === activeCategory && grid.children.length > 0) {
+      updateAllProductCardsInPlace();
+      return;
+    }
 
     const allMeds = Object.values(MED_DATABASE);
     const filtered = activeCategory === 'all'
       ? allMeds
       : allMeds.filter(m => m.category === activeCategory);
 
+    grid.setAttribute('data-rendered-category', activeCategory);
     grid.innerHTML = '';
 
     filtered.forEach((med, idx) => {
-      const inCabinet = Cabinet.has(med.id);
-      const { active, hypothetical } = getConflictsForMed(med.id);
-
-      const hasActiveConflict = inCabinet && active.length > 0;
-      const isSafeInCabinet = inCabinet && active.length === 0;
-      const wouldConflict = !inCabinet && hypothetical.length > 0;
-
-      let cardStateClass = '';
-      if (hasActiveConflict) cardStateClass = 'in-cabinet has-conflict';
-      else if (isSafeInCabinet) cardStateClass = 'in-cabinet is-safe';
-      else if (wouldConflict) cardStateClass = 'would-conflict';
+      const state = getCardState(med);
+      const cardStateClass = getCardStateClass(state);
 
       const card = document.createElement('div');
       card.className = `home-product-card ${cardStateClass}`.trim();
+      card.setAttribute('data-med-id', med.id);
       card.style.animationDelay = `${idx * 0.04}s`;
-
-      // Status Badge on Top Image
-      let badgeHtml = '';
-      if (hasActiveConflict) {
-        badgeHtml = `
-          <div class="card-conflict-badge" title="Contradiction in your cabinet">
-            <span class="badge-pulse-dot"></span>
-            <span>🚨 Contradiction</span>
-          </div>
-        `;
-      } else if (wouldConflict) {
-        badgeHtml = `
-          <div class="card-potential-badge" title="Conflicts with a medicine in your cabinet">
-            <span>⚠️ Conflict Warning</span>
-          </div>
-        `;
-      } else if (isSafeInCabinet) {
-        badgeHtml = `
-          <div class="card-safe-badge">
-            <span>✓ In Cabinet</span>
-          </div>
-        `;
-      }
-
-      // Conflict Snippet inside body
-      let conflictSnippetHtml = '';
-      if (hasActiveConflict) {
-        const topConflict = active[0];
-        conflictSnippetHtml = `
-          <div class="card-conflict-callout">
-            <div class="conflict-callout-header">🚨 ${topConflict.rule.title}</div>
-            <div class="conflict-callout-detail">
-              Conflicts with <strong>${topConflict.otherMed.brand}</strong>${topConflict.combinedDose ? ` (${topConflict.combinedDose} combined)` : ''}.
-            </div>
-          </div>
-        `;
-      } else if (wouldConflict) {
-        const topHypo = hypothetical[0];
-        conflictSnippetHtml = `
-          <div class="card-potential-callout">
-            <div class="potential-callout-header">⚠️ Warning: Contradiction</div>
-            <div class="potential-callout-detail">
-              Adding this conflicts with <strong>${topHypo.otherMed.brand}</strong> in cabinet (${topHypo.rule.title}).
-            </div>
-          </div>
-        `;
-      }
-
-      // Action buttons
-      let actionButtonsHtml = '';
-      if (hasActiveConflict) {
-        actionButtonsHtml = `
-          <button class="btn-add-medicine in-conflict" data-med-id="${med.id}" aria-label="Conflict detected in cabinet">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-            <span>Contradiction</span>
-          </button>
-          <button class="btn-remove-mini" data-remove-med-id="${med.id}" title="Remove from cabinet" aria-label="Remove ${med.brand}">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-          </button>
-        `;
-      } else if (isSafeInCabinet) {
-        actionButtonsHtml = `
-          <button class="btn-add-medicine added" data-med-id="${med.id}" aria-label="Added to cabinet">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-            <span>Added</span>
-          </button>
-          <button class="btn-remove-mini" data-remove-med-id="${med.id}" title="Remove from cabinet" aria-label="Remove ${med.brand}">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-          </button>
-        `;
-      } else if (wouldConflict) {
-        actionButtonsHtml = `
-          <button class="btn-add-medicine warn-add" data-med-id="${med.id}" aria-label="Add medicine (causes conflict)">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            <span>+ Add (+Conflict)</span>
-          </button>
-        `;
-      } else {
-        actionButtonsHtml = `
-          <button class="btn-add-medicine" data-med-id="${med.id}" aria-label="Add to cabinet">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            <span>Add</span>
-          </button>
-        `;
-      }
 
       card.innerHTML = `
         <div class="product-image-box">
-          <img src="${med.image}" alt="${med.brand}" class="product-img" loading="lazy">
+          <img src="${med.image}" alt="${med.brand}" class="product-img" loading="lazy" onerror="this.onerror=null; this.src=IMAGE_MAP['${med.category}'] || 'assets/med_paracetamol.jpg';">
           <div class="floating-meta-chip">${med.strength}</div>
-          ${badgeHtml}
+          <div class="card-badge-slot">${getCardBadgeHtml(state)}</div>
         </div>
         <div class="product-card-body">
           <div class="product-card-header-row">
             <span class="product-category-tag">${med.category}</span>
-            ${hasActiveConflict ? `<span class="danger-pill-mini">Conflict</span>` : ''}
+            <span class="card-header-conflict-slot">${state.hasActiveConflict ? `<span class="danger-pill-mini">Conflict</span>` : ''}</span>
           </div>
           <h4 class="product-brand-name">${med.brand}</h4>
           <p class="product-ingredient-line">${Object.keys(med.activeIngredients).join(' · ')}</p>
           <span class="product-strength-tag">${med.strength}</span>
-          ${conflictSnippetHtml}
+          <div class="card-conflict-slot">${getCardConflictSnippetHtml(state)}</div>
         </div>
         <div class="product-card-footer">
-          ${actionButtonsHtml}
+          <div class="card-action-slot" style="display: flex; gap: 8px; flex: 1; align-items: center;">${getCardActionButtonsHtml(med, state)}</div>
           <button class="btn-detail-icon" data-detail-id="${med.id}" aria-label="View ${med.brand} details">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
@@ -813,50 +1477,6 @@ document.addEventListener('DOMContentLoaded', () => {
           </button>
         </div>
       `;
-
-      // Add to cabinet button
-      const addBtn = card.querySelector('.btn-add-medicine');
-      if (addBtn && !inCabinet) {
-        addBtn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          Cabinet.add(med.id);
-          if (wouldConflict) {
-            showConflictToast(med.brand, hypothetical);
-          } else {
-            showAddToast(med.brand);
-          }
-          renderProductGrid();
-          updateHomeSafetyBanner();
-          updateNavBadges();
-        });
-      } else if (addBtn && hasActiveConflict) {
-        addBtn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          navigateTo('safety');
-        });
-      }
-
-      // Remove from cabinet button
-      const removeBtn = card.querySelector('.btn-remove-mini');
-      if (removeBtn) {
-        removeBtn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          Cabinet.remove(med.id);
-          renderProductGrid();
-          updateHomeSafetyBanner();
-          updateNavBadges();
-        });
-      }
-
-      // Detail button
-      const detailBtn = card.querySelector('.btn-detail-icon');
-      detailBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        openDetailModal(med.id);
-      });
-
-      // Card click → detail
-      card.addEventListener('click', () => openDetailModal(med.id));
 
       grid.appendChild(card);
     });
@@ -975,7 +1595,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       card.innerHTML = `
         <div class="cabinet-card-img-wrap">
-          <img src="${med.image}" alt="${med.brand}" class="cabinet-card-img" loading="lazy">
+          <img src="${med.image}" alt="${med.brand}" class="cabinet-card-img" loading="lazy" onerror="this.onerror=null; this.src=IMAGE_MAP['${med.category}'] || 'assets/med_paracetamol.jpg';">
         </div>
         <div class="cabinet-card-body">
           <span class="cabinet-card-brand">${med.brand}</span>
@@ -1107,12 +1727,12 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
         <div class="warning-medicine-pair">
           <div class="warning-med-chip">
-            <img src="${w.medA.image}" alt="${w.medA.brand}">
+            <img src="${w.medA.image}" alt="${w.medA.brand}" onerror="this.onerror=null; this.src=IMAGE_MAP['${w.medA.category}'] || 'assets/med_paracetamol.jpg';">
             ${w.medA.brand}
           </div>
           <span class="warning-pair-plus">+</span>
           <div class="warning-med-chip">
-            <img src="${w.medB.image}" alt="${w.medB.brand}">
+            <img src="${w.medB.image}" alt="${w.medB.brand}" onerror="this.onerror=null; this.src=IMAGE_MAP['${w.medB.category}'] || 'assets/med_paracetamol.jpg';">
             ${w.medB.brand}
           </div>
           ${w.doseA !== null ? `<span style="margin-left: auto; font-family: var(--font-heading); font-size: 0.75rem; font-weight: 700; color: var(--alert-red);">${w.doseA + w.doseB}mg combined</span>` : ''}
@@ -1344,7 +1964,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ✓ Medicine Identified
       </div>
       <div class="scan-result-card">
-        <img src="${med.image}" alt="${med.brand}" class="scan-result-img">
+        <img src="${med.image}" alt="${med.brand}" class="scan-result-img" onerror="this.onerror=null; this.src=IMAGE_MAP['${med.category}'] || 'assets/med_paracetamol.jpg';">
         <div class="scan-result-body">
           <div class="scan-result-brand">${med.brand}</div>
           <div class="scan-result-info">${Object.entries(med.activeIngredients).map(([k, v]) => `${k} ${v}mg`).join(' · ')}</div>
@@ -1426,7 +2046,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const item = document.createElement('div');
       item.className = 'search-result-item';
       item.innerHTML = `
-        <img src="${med.image}" alt="${med.brand}" class="search-result-img" loading="lazy">
+        <img src="${med.image}" alt="${med.brand}" class="search-result-img" loading="lazy" onerror="this.onerror=null; this.src=IMAGE_MAP['${med.category}'] || 'assets/med_paracetamol.jpg';">
         <div class="search-result-body">
           <div class="search-result-brand">${med.brand} ${conflictTag}</div>
           <div class="search-result-sub">${Object.keys(med.activeIngredients).join(' · ')} · ${med.strength}</div>
@@ -1517,7 +2137,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     detailModalBody.innerHTML = `
       <div class="detail-med-header">
-        <img src="${med.image}" alt="${med.brand}" class="detail-med-img">
+        <img src="${med.image}" alt="${med.brand}" class="detail-med-img" onerror="this.onerror=null; this.src=IMAGE_MAP['${med.category}'] || 'assets/med_paracetamol.jpg';">
         <div class="detail-med-meta">
           <div class="detail-med-category">${med.category}</div>
           <div class="detail-med-brand">${med.brand}</div>

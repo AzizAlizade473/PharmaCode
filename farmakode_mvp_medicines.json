@@ -1,0 +1,292 @@
+{
+  "dataset_name": "Farmakode MVP Medicine Catalog",
+  "source": "Uploaded OpenFDA medicines.json",
+  "purpose": "Hackathon MVP product catalog and ingredient-matching demo",
+  "total_selected": 20,
+  "important_note": "active_ingredients are derived from the uploaded generic_name field. This file is for an MVP/demo only and is not a medically verified ingredient or safety database.",
+  "medicines": [
+    {
+      "name": "Betadine",
+      "generic_name_source": "Povidone-Iodine",
+      "active_ingredients": [
+        "Povidone-Iodine"
+      ],
+      "category": "Antiseptic",
+      "manufacturer": "Atlantis Consumer Healthcare, Inc.",
+      "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=00002127-02bc-4c66-b0c3-ca29d8224afc&name=bottle-label.jpg",
+      "local_image_path": ".\\images\\Betadine.jpg",
+      "mvp_include": true,
+      "mvp_reason": "Common OTC consumer medicine; useful for demonstrating ingredient lookup.",
+      "data_status": "MVP/demo mapping from OpenFDA generic_name; verify before any real medical use"
+    },
+    {
+      "name": "Naproxen",
+      "generic_name_source": "Naproxen",
+      "active_ingredients": [
+        "Naproxen"
+      ],
+      "category": "Pain Relief / Anti-inflammatory",
+      "manufacturer": "A-S Medication Solutions",
+      "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=000155a8-709c-44e5-a75f-cd890f3a7caf&name=NaproxinNaStructure.jpg",
+      "local_image_path": ".\\images\\Naproxen.jpg",
+      "mvp_include": true,
+      "mvp_reason": "Useful pain-relief medicine for the MVP.",
+      "data_status": "MVP/demo mapping from OpenFDA generic_name; verify before any real medical use"
+    },
+    {
+      "name": "Quick Action",
+      "generic_name_source": "Salicylic Acid",
+      "active_ingredients": [
+        "Salicylic Acid"
+      ],
+      "category": "Topical Pain / Skin",
+      "manufacturer": "Walmart Inc.",
+      "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=00025ea5-d15f-49d2-a52a-6c1bd8c6a033&name=mm01.jpg",
+      "local_image_path": ".\\images\\Quick_Action.jpg",
+      "mvp_include": true,
+      "mvp_reason": "OTC topical product; useful for broader medicine scanning.",
+      "data_status": "MVP/demo mapping from OpenFDA generic_name; verify before any real medical use"
+    },
+    {
+      "name": "Anti Itch",
+      "generic_name_source": "Hydrocortisone",
+      "active_ingredients": [
+        "Hydrocortisone"
+      ],
+      "category": "Skin / Anti-itch",
+      "manufacturer": "Meijer, Inc.",
+      "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=00040bfe-001a-484e-bec0-e21e8b27f369&name=319-6e-anti-itch-cream.jpg",
+      "local_image_path": ".\\images\\Anti_Itch.jpg",
+      "mvp_include": true,
+      "mvp_reason": "Common OTC topical medicine.",
+      "data_status": "MVP/demo mapping from OpenFDA generic_name; verify before any real medical use"
+    },
+    {
+      "name": "Pain Reliever Extra Strength",
+      "generic_name_source": "Acetaminophen",
+      "active_ingredients": [
+        "Acetaminophen"
+      ],
+      "category": "Pain Relief",
+      "manufacturer": "Valu Merchandisers Company",
+      "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=0005aafa-08f8-4990-a54d-cc097195708f&name=best-choice-44-519-delisted-1.jpg",
+      "local_image_path": ".\\images\\Pain_Reliever_Extra_Strength.jpg",
+      "mvp_include": true,
+      "mvp_reason": "Strong MVP candidate; creates an acetaminophen duplicate scenario.",
+      "data_status": "MVP/demo mapping from OpenFDA generic_name; verify before any real medical use"
+    },
+    {
+      "name": "Oasis Tears Lubricant Eye",
+      "generic_name_source": "Glycerin",
+      "active_ingredients": [
+        "Glycerin"
+      ],
+      "category": "Eye Care",
+      "manufacturer": "OASIS Medical, Inc.",
+      "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=00071697-4ac6-4962-8eee-388b8b52bd40&name=OASIS+TEARS+Multidose+Box.jpg",
+      "local_image_path": ".\\images\\Oasis_Tears_Lubricant_Eye.jpg",
+      "mvp_include": true,
+      "mvp_reason": "Common OTC eye-care product.",
+      "data_status": "MVP/demo mapping from OpenFDA generic_name; verify before any real medical use"
+    },
+    {
+      "name": "Thera Plus Maximum Strength Feminine Anti-Itch",
+      "generic_name_source": "Benzocaine, Resorcinol",
+      "active_ingredients": [
+        "Benzocaine",
+        "Resorcinol"
+      ],
+      "category": "Feminine Care",
+      "manufacturer": "FOURSTAR GROUP USA, INC.",
+      "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=0007e3ea-882b-4000-8e70-2bcec2c08613&name=Outer+Package.jpg",
+      "local_image_path": ".\\images\\Thera_Plus_Maximum_Strength_Feminine_AntiItch.jpg",
+      "mvp_include": true,
+      "mvp_reason": "OTC product with identifiable active ingredients.",
+      "data_status": "MVP/demo mapping from OpenFDA generic_name; verify before any real medical use"
+    },
+    {
+      "name": "Lights Povindone Iodine Scrub",
+      "generic_name_source": "Povidone-Iodine",
+      "active_ingredients": [
+        "Povidone-Iodine"
+      ],
+      "category": "Antiseptic",
+      "manufacturer": "Lights Medical Manufacture Co., Ltd.",
+      "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=000bf57b-1805-4746-bf1c-32856241213a&name=Povidone+iodine+Scrub6.jpg",
+      "local_image_path": ".\\images\\Lights_Povindone_Iodine_Scrub.jpg",
+      "mvp_include": true,
+      "mvp_reason": "Useful second povidone-iodine product for duplicate-ingredient demonstrations.",
+      "data_status": "MVP/demo mapping from OpenFDA generic_name; verify before any real medical use"
+    },
+    {
+      "name": "Basic Care Acetaminophen",
+      "generic_name_source": "Acetaminophen",
+      "active_ingredients": [
+        "Acetaminophen"
+      ],
+      "category": "Pain Relief",
+      "manufacturer": "Amazon.com Services LLC",
+      "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=00146b91-008d-4b16-95b0-6077f98821be&name=image-01.jpg",
+      "local_image_path": ".\\images\\Basic_Care_Acetaminophen.jpg",
+      "mvp_include": true,
+      "mvp_reason": "Strong MVP candidate; creates an acetaminophen duplicate scenario.",
+      "data_status": "MVP/demo mapping from OpenFDA generic_name; verify before any real medical use"
+    },
+    {
+      "name": "Anticavity Rinse",
+      "generic_name_source": "Sodium Fluoride",
+      "active_ingredients": [
+        "Sodium Fluoride"
+      ],
+      "category": "Oral Care",
+      "manufacturer": "Meijer, Inc.",
+      "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=001777fb-196c-499a-94c8-6cdcef0958e9&name=mm01.jpg",
+      "local_image_path": ".\\images\\Anticavity_Rinse.jpg",
+      "mvp_include": true,
+      "mvp_reason": "OTC consumer medicine/product with a clear active ingredient.",
+      "data_status": "MVP/demo mapping from OpenFDA generic_name; verify before any real medical use"
+    },
+    {
+      "name": "Acid Reducer",
+      "generic_name_source": "Esomeprazole Magnesium",
+      "active_ingredients": [
+        "Esomeprazole Magnesium"
+      ],
+      "category": "Digestive / Acid Reduction",
+      "manufacturer": "CVS Pharmacy",
+      "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=001817ea-906e-47f7-8605-41ba5a9abd21&name=esomeprazole-20-mg-tablets-delisted-1.jpg",
+      "local_image_path": ".\\images\\Acid_Reducer.jpg",
+      "mvp_include": true,
+      "mvp_reason": "Useful OTC digestive-health product.",
+      "data_status": "MVP/demo mapping from OpenFDA generic_name; verify before any real medical use"
+    },
+    {
+      "name": "Foster And Thrive Dry Eye Relief",
+      "generic_name_source": "Polyethylene Glycol 400",
+      "active_ingredients": [
+        "Polyethylene Glycol 400"
+      ],
+      "category": "Eye Care",
+      "manufacturer": "Strategic Sourcing Services LLC",
+      "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=0018ade9-5856-db6c-e063-6394a90a2ccf&name=Foster+and+Thrive+Dry+Eye+Relief+15mL+%28revised%29.jpg",
+      "local_image_path": ".\\images\\Foster_And_Thrive_Dry_Eye_Relief.jpg",
+      "mvp_include": true,
+      "mvp_reason": "Common OTC eye-care product.",
+      "data_status": "MVP/demo mapping from OpenFDA generic_name; verify before any real medical use"
+    },
+    {
+      "name": "Foster And Thrive Advanced Relief Eye Drops",
+      "generic_name_source": "Polyethylene Glycol 400, Tetrahydrozoline Hcl",
+      "active_ingredients": [
+        "Polyethylene Glycol 400",
+        "Tetrahydrozoline Hcl"
+      ],
+      "category": "Eye Care",
+      "manufacturer": "Strategic Sourcing Services LLC",
+      "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=0019cd99-b245-2ffc-e063-6294a90a9f27&name=Foster+and+Thrive+Adv+Relief+Eye+Drops+15mL+%28revised%29.jpg",
+      "local_image_path": ".\\images\\Foster_And_Thrive_Advanced_Relief_Eye_Drops.jpg",
+      "mvp_include": true,
+      "mvp_reason": "Useful because it shares an ingredient with another eye-drop product.",
+      "data_status": "MVP/demo mapping from OpenFDA generic_name; verify before any real medical use"
+    },
+    {
+      "name": "Naproxen Sodium 220Mg",
+      "generic_name_source": "Naproxen Sodium 220Mg",
+      "active_ingredients": [
+        "Naproxen Sodium 220Mg"
+      ],
+      "category": "Pain Relief / Anti-inflammatory",
+      "manufacturer": "Command Brands, LLC",
+      "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=002052df-83ac-4efd-926c-b60a8f64cec4&name=naproxen-sodium-220mg-1.jpg",
+      "local_image_path": ".\\images\\Naproxen_Sodium_220Mg.jpg",
+      "mvp_include": true,
+      "mvp_reason": "Strong MVP candidate; useful for a second naproxen-family example.",
+      "data_status": "MVP/demo mapping from OpenFDA generic_name; verify before any real medical use"
+    },
+    {
+      "name": "Leader Earwax Removal Drops Earwax Removal Aid",
+      "generic_name_source": "Carbamide Peroxide",
+      "active_ingredients": [
+        "Carbamide Peroxide"
+      ],
+      "category": "Ear Care",
+      "manufacturer": "Cardinal Health, Inc.",
+      "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=0022a174-8377-44af-84a9-31adb27de131&name=label+bottle.jpg",
+      "local_image_path": ".\\images\\Leader_Earwax_Removal_Drops_Earwax_Removal_Aid.jpg",
+      "mvp_include": true,
+      "mvp_reason": "Clear OTC product with a specific active ingredient.",
+      "data_status": "MVP/demo mapping from OpenFDA generic_name; verify before any real medical use"
+    },
+    {
+      "name": "Famotidine",
+      "generic_name_source": "Famotidine",
+      "active_ingredients": [
+        "Famotidine"
+      ],
+      "category": "Digestive / Acid Reduction",
+      "manufacturer": "PD-Rx Pharmaceuticals, Inc.",
+      "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=002875d2-8c30-2d2e-e063-6294a90ae01e&name=72789331.jpg",
+      "local_image_path": ".\\images\\Famotidine.jpg",
+      "mvp_include": true,
+      "mvp_reason": "Common OTC digestive-health medicine.",
+      "data_status": "MVP/demo mapping from OpenFDA generic_name; verify before any real medical use"
+    },
+    {
+      "name": "Equate Honey Lemon Cough Drops",
+      "generic_name_source": "Menthol",
+      "active_ingredients": [
+        "Menthol"
+      ],
+      "category": "Cold & Cough",
+      "manufacturer": "WalMart",
+      "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=0028be18-5162-ff51-e063-6294a90ae517&name=00289617-86f5-7a52-e063-6294a90a09b1.jpg",
+      "local_image_path": ".\\images\\Equate_Honey_Lemon_Cough_Drops.jpg",
+      "mvp_include": true,
+      "mvp_reason": "Common OTC cough product.",
+      "data_status": "MVP/demo mapping from OpenFDA generic_name; verify before any real medical use"
+    },
+    {
+      "name": "Dragon Pain Relieving Balm",
+      "generic_name_source": "Camphor, Menthol",
+      "active_ingredients": [
+        "Camphor",
+        "Menthol"
+      ],
+      "category": "Topical Pain Relief",
+      "manufacturer": "Americanna Wellness, Inc.",
+      "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=002997d0-3176-3918-e063-6294a90a4408&name=1.jpg",
+      "local_image_path": ".\\images\\Dragon_Pain_Relieving_Balm.jpg",
+      "mvp_include": true,
+      "mvp_reason": "Common topical pain-relief product; useful for scanning variety.",
+      "data_status": "MVP/demo mapping from OpenFDA generic_name; verify before any real medical use"
+    },
+    {
+      "name": "Eminence Radiant Protection Spf Fluid",
+      "generic_name_source": "Zinc Oxide",
+      "active_ingredients": [
+        "Zinc Oxide"
+      ],
+      "category": "Sun Protection",
+      "manufacturer": "Eminence Organic Skin Care",
+      "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=002a4766-0c7e-4ec7-e063-6294a90a78d8&name=RadiantSPFRetailBox.jpg",
+      "local_image_path": ".\\images\\Eminence_Radiant_Protection_Spf_Fluid.jpg",
+      "mvp_include": true,
+      "mvp_reason": "Consumer health product with a clear active ingredient; optional for catalog coverage.",
+      "data_status": "MVP/demo mapping from OpenFDA generic_name; verify before any real medical use"
+    },
+    {
+      "name": "Foster And Thrive Original Formula Eye Drops",
+      "generic_name_source": "Tetrahydrozoline Hcl",
+      "active_ingredients": [
+        "Tetrahydrozoline Hcl"
+      ],
+      "category": "Eye Care",
+      "manufacturer": "Strategic Sourcing Services LLC",
+      "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=002da62b-aec6-8e2a-e063-6294a90a5efc&name=Foster+and+Thrive+Original+Formula+Eye+Drops+15mL.jpg",
+      "local_image_path": ".\\images\\Foster_And_Thrive_Original_Formula_Eye_Drops.jpg",
+      "mvp_include": true,
+      "mvp_reason": "Useful duplicate-ingredient scenario with tetrahydrozoline.",
+      "data_status": "MVP/demo mapping from OpenFDA generic_name; verify before any real medical use"
+    }
+  ]
+}

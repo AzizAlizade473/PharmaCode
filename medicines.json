@@ -1,0 +1,352 @@
+[
+  {
+    "name": "Silicea",
+    "generic_name": "Silicea",
+    "manufacturer": "Rxhomeo Private Limited d.b.a. Rxhomeo, Inc",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=0000025c-6dbf-4af7-a741-5cbacaed519a&name=Label-Pellets-FDA_15631-0404.jpg",
+    "local_image_path": ".\\images\\Silicea.jpg"
+  },
+  {
+    "name": "Betadine",
+    "generic_name": "Povidone-Iodine",
+    "manufacturer": "Atlantis Consumer Healthcare, Inc.",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=00002127-02bc-4c66-b0c3-ca29d8224afc&name=bottle-label.jpg",
+    "local_image_path": ".\\images\\Betadine.jpg"
+  },
+  {
+    "name": "Naproxen",
+    "generic_name": "Naproxen",
+    "manufacturer": "A-S Medication Solutions",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=000155a8-709c-44e5-a75f-cd890f3a7caf&name=NaproxinNaStructure.jpg",
+    "local_image_path": ".\\images\\Naproxen.jpg"
+  },
+  {
+    "name": "Moisturizing Antibacterial",
+    "generic_name": "Benzalkonium Chloride",
+    "manufacturer": "Walmart Inc.",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=0001d1cf-f727-4875-a44f-5a51f7b617a4&name=mm01.jpg",
+    "local_image_path": ".\\images\\Moisturizing_Antibacterial.jpg"
+  },
+  {
+    "name": "Quick Action",
+    "generic_name": "Salicylic Acid",
+    "manufacturer": "Walmart Inc.",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=00025ea5-d15f-49d2-a52a-6c1bd8c6a033&name=mm01.jpg",
+    "local_image_path": ".\\images\\Quick_Action.jpg"
+  },
+  {
+    "name": "Mekinist",
+    "generic_name": "Trametinib",
+    "manufacturer": "Novartis Pharmaceuticals Corporation",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=0002ad27-779d-42ab-83b5-bc65453412a1&name=mekinist-01.jpg",
+    "local_image_path": ".\\images\\Mekinist.jpg"
+  },
+  {
+    "name": "Glimepiride",
+    "generic_name": "Glimepiride",
+    "manufacturer": "American Health Packaging",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=0003458f-352a-46fa-9d99-230daa76ae29&name=1+mg+Blister.jpg",
+    "local_image_path": ".\\images\\Glimepiride.jpg"
+  },
+  {
+    "name": "Methocarbamol",
+    "generic_name": "Methocarbamol",
+    "manufacturer": "Proficient Rx LP",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=0003eccd-6147-4a7c-ae83-b2a94933e07d&name=8abf52d1-f208-4ba0-821c-8417308a985a-01.jpg",
+    "local_image_path": ".\\images\\Methocarbamol.jpg"
+  },
+  {
+    "name": "Anti Itch",
+    "generic_name": "Hydrocortisone",
+    "manufacturer": "Meijer, Inc.",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=00040bfe-001a-484e-bec0-e21e8b27f369&name=319-6e-anti-itch-cream.jpg",
+    "local_image_path": ".\\images\\Anti_Itch.jpg"
+  },
+  {
+    "name": "Varenicline",
+    "generic_name": "Varenicline",
+    "manufacturer": "Aurobindo Pharma Limited",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=0004a0bb-87c0-46f8-b36a-95c98107395d&name=varenicline-fig1.jpg",
+    "local_image_path": ".\\images\\Varenicline.jpg"
+  },
+  {
+    "name": "Rescue Sleep",
+    "generic_name": "Helianthemum Nummularium Flower, Clematis Vitalba Flower, Impatiens Glandulifera Flower, Prunus Cerasifera Flower, Ornithogalum Umbellatum, And Aesculus Hippocastanum Flower",
+    "manufacturer": "Nelson Bach USA, Ltd.",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=00052c1a-9e0f-44ba-bc93-025add5a4031&name=rescue-01.jpg",
+    "local_image_path": ".\\images\\Rescue_Sleep.jpg"
+  },
+  {
+    "name": "Pain Reliever Extra Strength",
+    "generic_name": "Acetaminophen",
+    "manufacturer": "Valu Merchandisers Company",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=0005aafa-08f8-4990-a54d-cc097195708f&name=best-choice-44-519-delisted-1.jpg",
+    "local_image_path": ".\\images\\Pain_Reliever_Extra_Strength.jpg"
+  },
+  {
+    "name": "Oasis Tears Lubricant Eye",
+    "generic_name": "Glycerin",
+    "manufacturer": "OASIS Medical, Inc.",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=00071697-4ac6-4962-8eee-388b8b52bd40&name=OASIS+TEARS+Multidose+Box.jpg",
+    "local_image_path": ".\\images\\Oasis_Tears_Lubricant_Eye.jpg"
+  },
+  {
+    "name": "Thera Plus Maximum Strength Feminine Anti-Itch",
+    "generic_name": "Benzocaine, Resorcinol",
+    "manufacturer": "FOURSTAR GROUP USA, INC.",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=0007e3ea-882b-4000-8e70-2bcec2c08613&name=Outer+Package.jpg",
+    "local_image_path": ".\\images\\Thera_Plus_Maximum_Strength_Feminine_AntiItch.jpg"
+  },
+  {
+    "name": "Tamsulosin Hydrochloride",
+    "generic_name": "Tamsulosin Hydrochloride",
+    "manufacturer": "XLCare Pharmaceuticals, Inc.",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=00097e78-9c04-4e62-8260-ddb50e9a6a93&name=0.4mg+500s.jpg",
+    "local_image_path": ".\\images\\Tamsulosin_Hydrochloride.jpg"
+  },
+  {
+    "name": "Sure Complete Confidence Antiperspirant Deodorant Aerosol, Unscented",
+    "generic_name": "Aluminum Chlorohydrate",
+    "manufacturer": "Sodalis USA, LLC",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=000a4912-a633-46b4-9aff-725fdeeef7c0&name=Inner+Package2.jpg",
+    "local_image_path": ".\\images\\Sure_Complete_Confidence_Antiperspirant_Deodorant_Aerosol_Unscented.jpg"
+  },
+  {
+    "name": "Betamethasone Dipropionate",
+    "generic_name": "Betamethasone Dipropionate",
+    "manufacturer": "Sun Pharmaceutical Industries, Inc.",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=000ae256-a337-4903-845b-003777a4efa8&name=RX5264298C15-SUN25.jpg",
+    "local_image_path": ".\\images\\Betamethasone_Dipropionate.jpg"
+  },
+  {
+    "name": "Lights Povindone Iodine Scrub",
+    "generic_name": "Povidone-Iodine",
+    "manufacturer": "Lights Medical Manufacture Co., Ltd.",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=000bf57b-1805-4746-bf1c-32856241213a&name=Povidone+iodine+Scrub6.jpg",
+    "local_image_path": ".\\images\\Lights_Povindone_Iodine_Scrub.jpg"
+  },
+  {
+    "name": "Calcium Acetate",
+    "generic_name": "Calcium Acetate",
+    "manufacturer": "Cipla USA Inc.,",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=000c044a-12ef-4484-942e-99552b777d58&name=Calcium+Acetate+Label.jpg",
+    "local_image_path": ".\\images\\Calcium_Acetate.jpg"
+  },
+  {
+    "name": "Entresto",
+    "generic_name": "Sacubitril And Valsartan",
+    "manufacturer": "Novartis Pharmaceuticals Corporation",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=000dc81d-ab91-450c-8eae-8eb74e72296f&name=ENTRESTO-01.jpg",
+    "local_image_path": ".\\images\\Entresto.jpg"
+  },
+  {
+    "name": "Veradex-E",
+    "generic_name": "Petrolatum And Lanolin",
+    "manufacturer": "ABBE Laboratories, Inc.",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=00100102-c245-4b63-a4ff-794cacda6f17&name=Veradex-E.jpg",
+    "local_image_path": ".\\images\\VeradexE.jpg"
+  },
+  {
+    "name": "Etodolac",
+    "generic_name": "Etodolac",
+    "manufacturer": "A-S Medication Solutions",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=00125d63-d8d0-46c5-bdf1-80d2c85eda5a&name=etodolac-tablets-usp-1.jpg",
+    "local_image_path": ".\\images\\Etodolac.jpg"
+  },
+  {
+    "name": "Basic Care Acetaminophen",
+    "generic_name": "Acetaminophen",
+    "manufacturer": "Amazon.com Services LLC",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=00146b91-008d-4b16-95b0-6077f98821be&name=image-01.jpg",
+    "local_image_path": ".\\images\\Basic_Care_Acetaminophen.jpg"
+  },
+  {
+    "name": "Anticavity Rinse",
+    "generic_name": "Sodium Fluoride",
+    "manufacturer": "Meijer, Inc.",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=001777fb-196c-499a-94c8-6cdcef0958e9&name=mm01.jpg",
+    "local_image_path": ".\\images\\Anticavity_Rinse.jpg"
+  },
+  {
+    "name": "Sertraline Hydrochloride",
+    "generic_name": "Sertraline Hydrochloride",
+    "manufacturer": "Proficient Rx LP",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=00179766-980b-44b0-99d3-1fee2bb27e37&name=eca3f504-92e3-4765-b175-23cdcaf20634-01.jpg",
+    "local_image_path": ".\\images\\Sertraline_Hydrochloride.jpg"
+  },
+  {
+    "name": "Antibacterial 2X",
+    "generic_name": "Benzalkonium Chloride",
+    "manufacturer": "Sante Manufacturing Inc",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=00179db3-5a76-4724-a848-28e71eb580a6&name=16-16.jpg",
+    "local_image_path": ".\\images\\Antibacterial_2X.jpg"
+  },
+  {
+    "name": "Acid Reducer",
+    "generic_name": "Esomeprazole Magnesium",
+    "manufacturer": "CVS Pharmacy",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=001817ea-906e-47f7-8605-41ba5a9abd21&name=esomeprazole-20-mg-tablets-delisted-1.jpg",
+    "local_image_path": ".\\images\\Acid_Reducer.jpg"
+  },
+  {
+    "name": "Forever Skin Glow 24H Wear Radiant Foundation Perfection And Hydration Concentrated Floral Skincare With Suncreen Broad Spectrum Spf 15 00",
+    "generic_name": "Octisalate, Titanium Dioxide",
+    "manufacturer": "Parfums Christian Dior",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=0018573d-922b-4642-9513-63481e9131d5&name=20mlLabel0.jpg",
+    "local_image_path": ".\\images\\Forever_Skin_Glow_24H_Wear_Radiant_Foundation_Perfection_And_Hydration_Concentrated_Floral_Skincare_With_Suncreen_Broad_Spectrum_Spf_15_00.jpg"
+  },
+  {
+    "name": "Foster And Thrive Dry Eye Relief",
+    "generic_name": "Polyethylene Glycol 400",
+    "manufacturer": "Strategic Sourcing Services LLC",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=0018ade9-5856-db6c-e063-6394a90a2ccf&name=Foster+and+Thrive+Dry+Eye+Relief+15mL+%28revised%29.jpg",
+    "local_image_path": ".\\images\\Foster_And_Thrive_Dry_Eye_Relief.jpg"
+  },
+  {
+    "name": "Foster And Thrive Advanced Relief Eye Drops",
+    "generic_name": "Polyethylene Glycol 400, Tetrahydrozoline Hcl",
+    "manufacturer": "Strategic Sourcing Services LLC",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=0019cd99-b245-2ffc-e063-6294a90a9f27&name=Foster+and+Thrive+Adv+Relief+Eye+Drops+15mL+%28revised%29.jpg",
+    "local_image_path": ".\\images\\Foster_And_Thrive_Advanced_Relief_Eye_Drops.jpg"
+  },
+  {
+    "name": "Isopropyl Alcohol",
+    "generic_name": "Isopropyl Alcohol",
+    "manufacturer": "Cariba International",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=001c1fcf-2808-467c-86d8-c038513fa3b5&name=mm01.jpg",
+    "local_image_path": ".\\images\\Isopropyl_Alcohol.jpg"
+  },
+  {
+    "name": "Fludrocortisone Acetate",
+    "generic_name": "Fludrocortisone Acetate",
+    "manufacturer": "American Health Packaging",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=001e72ea-2c9e-468c-90cc-6c347234e2a9&name=0.1+mg+Fludrocortisone+Acetate+Tablet+Blister.jpg",
+    "local_image_path": ".\\images\\Fludrocortisone_Acetate.jpg"
+  },
+  {
+    "name": "Lacosamide",
+    "generic_name": "Lacosamide",
+    "manufacturer": "Somerset Therapeutics, LLC",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=00203a7b-e774-45f7-ac6b-48db6d32a48a&name=7d259027-e0df-41af-8ead-40aebffd8b59-01.jpg",
+    "local_image_path": ".\\images\\Lacosamide.jpg"
+  },
+  {
+    "name": "Cerave Developed With Dermatologists Acne Control Cleanser",
+    "generic_name": "Salicylic Acid",
+    "manufacturer": "L'Oreal USA Products Inc",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=00203b2a-74dd-45a5-977a-3ef4eb314577&name=CVAcneControlCleanserBack.jpg",
+    "local_image_path": ".\\images\\Cerave_Developed_With_Dermatologists_Acne_Control_Cleanser.jpg"
+  },
+  {
+    "name": "Naproxen Sodium 220Mg",
+    "generic_name": "Naproxen Sodium 220Mg",
+    "manufacturer": "Command Brands, LLC",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=002052df-83ac-4efd-926c-b60a8f64cec4&name=naproxen-sodium-220mg-1.jpg",
+    "local_image_path": ".\\images\\Naproxen_Sodium_220Mg.jpg"
+  },
+  {
+    "name": "Suds High Foaming Antiseptic Hand And Body Wash",
+    "generic_name": "Chloroxylenol",
+    "manufacturer": "Pro chem, Inc.",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=00214c45-8453-49f5-b3e9-c3602fe96e20&name=Pro+Chem+687641P984_Suds+Hand+Soap.jpg",
+    "local_image_path": ".\\images\\Suds_High_Foaming_Antiseptic_Hand_And_Body_Wash.jpg"
+  },
+  {
+    "name": "Leader Earwax Removal Drops Earwax Removal Aid",
+    "generic_name": "Carbamide Peroxide",
+    "manufacturer": "Cardinal Health, Inc.",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=0022a174-8377-44af-84a9-31adb27de131&name=label+bottle.jpg",
+    "local_image_path": ".\\images\\Leader_Earwax_Removal_Drops_Earwax_Removal_Aid.jpg"
+  },
+  {
+    "name": "Amphetamine Sulfate",
+    "generic_name": "Amphetamine Sulfate",
+    "manufacturer": "SpecGx LLC",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=00242264-40d8-4267-a91a-727a1f088616&name=amphetamine-sulfate-tablets-1.jpg",
+    "local_image_path": ".\\images\\Amphetamine_Sulfate.jpg"
+  },
+  {
+    "name": "Dove",
+    "generic_name": "Even Tone Plus Niacinamide Apple Blossom And Mango Butter Dry Spray 72H Antiperspirant Deodorant",
+    "manufacturer": "Conopco, Inc. d/b/a Unilever",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=0024658a-0b42-790f-e063-6294a90aefe8&name=Dove+Apple+Blossom+AP+Deo+AE.jpg",
+    "local_image_path": ".\\images\\Dove.jpg"
+  },
+  {
+    "name": "Sports For Trauma Gel",
+    "generic_name": "Bellis Perennis, Hypericum Perfomatum,Toxicodendron Pubscens Leaf, Ruta Graveolens Flowering Top",
+    "manufacturer": "Schwabe Mexico, S.A. de C.V.",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=002745e8-6f11-4b47-99d3-dddef0c170d6&name=LHBN21825492_A01_SPORTS_GEL_2_5oz_CTN_FNL.jpg",
+    "local_image_path": ".\\images\\Sports_For_Trauma_Gel.jpg"
+  },
+  {
+    "name": "Olay Regenerist Regenerating With Sunscreen Broad Spectrum Spf 15",
+    "generic_name": "Avobenzone, Homosalate, Octisalate, And Octocrylene",
+    "manufacturer": "The Procter & Gamble Manufacturing Company",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=00280745-908b-468f-e063-6294a90aa12f&name=Olay.jpg",
+    "local_image_path": ".\\images\\Olay_Regenerist_Regenerating_With_Sunscreen_Broad_Spectrum_Spf_15.jpg"
+  },
+  {
+    "name": "Roll On Anti-Perspirant (Alcohol Free)",
+    "generic_name": "Aluminum Chlorohydrate",
+    "manufacturer": "Cardinal Health",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=00281593-ae46-4936-ba86-129ee9d75e40&name=roll-on-01.jpg",
+    "local_image_path": ".\\images\\Roll_On_AntiPerspirant_Alcohol_Free.jpg"
+  },
+  {
+    "name": "Attitude Diaper Cream Zinc Unscented",
+    "generic_name": "Zinc Oxide",
+    "manufacturer": "9055-7588 Quebec Inc. (Attitude)",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=00283894-ddc6-0faa-e063-6394a90ae47c&name=Stick+label.jpg",
+    "local_image_path": ".\\images\\Attitude_Diaper_Cream_Zinc_Unscented.jpg"
+  },
+  {
+    "name": "Famotidine",
+    "generic_name": "Famotidine",
+    "manufacturer": "PD-Rx Pharmaceuticals, Inc.",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=002875d2-8c30-2d2e-e063-6294a90ae01e&name=72789331.jpg",
+    "local_image_path": ".\\images\\Famotidine.jpg"
+  },
+  {
+    "name": "Equate Honey Lemon Cough Drops",
+    "generic_name": "Menthol",
+    "manufacturer": "WalMart",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=0028be18-5162-ff51-e063-6294a90ae517&name=00289617-86f5-7a52-e063-6294a90a09b1.jpg",
+    "local_image_path": ".\\images\\Equate_Honey_Lemon_Cough_Drops.jpg"
+  },
+  {
+    "name": "Prime Tooth Care Hami Melon",
+    "generic_name": "Sodium Fluoride",
+    "manufacturer": "Prime Tooth Care LLC",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=0028f88d-a9fe-4cfa-a6c6-168f9689b5f6&name=Label3.jpg",
+    "local_image_path": ".\\images\\Prime_Tooth_Care_Hami_Melon.jpg"
+  },
+  {
+    "name": "Dragon Pain Relieving Balm",
+    "generic_name": "Camphor, Menthol",
+    "manufacturer": "Americanna Wellness, Inc.",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=002997d0-3176-3918-e063-6294a90a4408&name=1.jpg",
+    "local_image_path": ".\\images\\Dragon_Pain_Relieving_Balm.jpg"
+  },
+  {
+    "name": "Eminence Radiant Protection Spf Fluid",
+    "generic_name": "Zinc Oxide",
+    "manufacturer": "Eminence Organic Skin Care",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=002a4766-0c7e-4ec7-e063-6294a90a78d8&name=RadiantSPFRetailBox.jpg",
+    "local_image_path": ".\\images\\Eminence_Radiant_Protection_Spf_Fluid.jpg"
+  },
+  {
+    "name": "Aluminium Fluoratum",
+    "generic_name": "Aluminium Fluoratum",
+    "manufacturer": "Hahnemann Laboratories, INC.",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=002ce4f0-e918-6409-e063-6394a90a99ed&name=Aluminium+Fluoratum+100C+100g.jpg",
+    "local_image_path": ".\\images\\Aluminium_Fluoratum.jpg"
+  },
+  {
+    "name": "Foster And Thrive Original Formula Eye Drops",
+    "generic_name": "Tetrahydrozoline Hcl",
+    "manufacturer": "Strategic Sourcing Services LLC",
+    "image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=002da62b-aec6-8e2a-e063-6294a90a5efc&name=Foster+and+Thrive+Original+Formula+Eye+Drops+15mL.jpg",
+    "local_image_path": ".\\images\\Foster_And_Thrive_Original_Formula_Eye_Drops.jpg"
+  }
+]

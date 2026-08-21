@@ -29,10 +29,21 @@
         <a href="#" class="nav-item" data-page="about" id="navAbout">About</a>
         <a href="#" class="nav-item" data-page="medicines" id="navMedicines">Medicines</a>
         <a href="#" class="nav-item" data-page="safety" id="navSafety">Safety</a>
+        <!-- Mobile-only Scan Medicine button inside nav drawer -->
+        <button class="btn-pill btn-primary nav-scan-btn nav-scan-mobile" data-page="medicines" aria-label="Scan Medicine">
+          <span>Scan Medicine</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 7V5a2 2 0 0 1 2-2h2" />
+            <path d="M17 3h2a2 2 0 0 1 2 2v2" />
+            <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
+            <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
+          </svg>
+        </button>
       </nav>
 
       <div class="header-actions">
-        <button class="btn-pill btn-primary nav-scan-btn" id="headerScanBtn" data-page="medicines" aria-label="Scan Medicine">
+        <!-- Desktop-only Scan Medicine button -->
+        <button class="btn-pill btn-primary nav-scan-btn nav-scan-desktop" id="headerScanBtn" data-page="medicines" aria-label="Scan Medicine">
           <span>Scan Medicine</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M3 7V5a2 2 0 0 1 2-2h2" />
@@ -57,22 +68,22 @@
     <section class="page page-home active" id="page-home">
 
       <!-- Hero Section -->
-      <section class="hero-section" id="hero" style="padding: 20px 0;">
-        <div class="container hero-container" style="background-color: var(--btn-dark); border-radius: var(--radius-xl); padding: 56px 48px; display: flex; align-items: center; justify-content: space-between; gap: 40px; color: var(--text-white); position: relative; overflow: visible; min-height: 500px; max-width: 1100px;">
+      <section class="hero-section" id="hero">
+        <div class="container hero-container">
 
-          <div class="hero-header reveal-fade" style="flex: 1; max-width: 480px; z-index: 10;">
-            <h1 class="hero-title" style="color: var(--text-white); font-size: clamp(2.5rem, 4vw, 3.5rem); line-height: 1.15; margin-bottom: 24px; font-weight: 800;">Know what you're taking</h1>
-            <p class="hero-subline" style="color: rgba(255,255,255,0.85); font-size: 1.125rem; margin-bottom: 36px; font-weight: 500; line-height: 1.6;">Two different boxes. One hidden duplicate ingredient.</p>
+          <div class="hero-header reveal-fade">
+            <h1 class="hero-title">Know what you're taking</h1>
+            <p class="hero-subline">Two different boxes. One hidden duplicate ingredient.</p>
             
             <div class="hero-cta-group">
-              <button class="btn-pill btn-large" style="background-color: #10b981; color: #ffffff;" id="heroScanBtn" data-page="medicines">
+              <button class="btn-pill btn-large btn-hero-scan" id="heroScanBtn" data-page="medicines">
                 <span>Scan Medicine</span>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M5 12h14" />
                   <path d="m12 5 7 7-7 7" />
                 </svg>
               </button>
-              <button class="btn-pill btn-large" style="background-color: #ffffff; color: #064e3b;" id="heroShopBtn" data-page="medicines">
+              <button class="btn-pill btn-large btn-hero-shop" id="heroShopBtn" data-page="medicines">
                 <span>Browse Cabinet</span>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M5 12h14" />
@@ -83,13 +94,13 @@
           </div>
 
           <!-- Hero Visual -->
-          <div class="hero-visual-stage reveal-scale" style="flex: 1; position: relative; max-width: 450px; z-index: 10;">
-            <div style="padding-top: 100%; position: relative;">
-                <img src="assets/hero_visual.jpg" alt="Health Essentials" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 32px; object-fit: cover; box-shadow: 0 20px 40px rgba(0,0,0,0.15);">
+          <div class="hero-visual-stage reveal-scale">
+            <div class="hero-visual-box">
+              <img src="assets/hero_visual.jpg" alt="Health Essentials" class="hero-visual-img">
             </div>
-            <div class="floating-badge" style="position: absolute; bottom: 20px; right: -30px; background: white; padding: 20px 24px; border-radius: 20px; color: var(--text-primary); box-shadow: 0 10px 30px rgba(0,0,0,0.2); max-width: 220px; z-index: 20;">
-              <div style="font-size: 2.75rem; font-weight: 800; line-height: 1; margin-bottom: 8px;">98<span style="font-size: 1.25rem;">%</span></div>
-              <div style="font-size: 0.85rem; color: var(--text-secondary); font-weight: 600; line-height: 1.4;">Customer satisfaction rating across all orders</div>
+            <div class="floating-badge">
+              <div class="floating-badge-num">98<span>%</span></div>
+              <div class="floating-badge-label">Customer satisfaction rating across all orders</div>
             </div>
           </div>
 
