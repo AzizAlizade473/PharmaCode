@@ -286,6 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     save() {
       localStorage.setItem(CABINET_KEY, JSON.stringify(this.items));
+      updateNavBadges();
     },
 
     add(medId) {
@@ -320,8 +321,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================================================
   // 4. SAFETY ANALYSIS ENGINE
   // ==========================================================================
-  function analyzeSafety() {
-    const meds = Cabinet.getMeds();
+  function analyzeSafety(customMeds = null) {
+    const meds = customMeds || Cabinet.getMeds();
     const warnings = [];
 
     if (meds.length < 2) return warnings;
@@ -339,14 +340,21 @@ document.addEventListener('DOMContentLoaded', () => {
             const doseA = medA.activeIngredients[rule.ingredient];
             const doseB = medB.activeIngredients[rule.ingredient];
             if (doseA !== undefined && doseB !== undefined) {
-              warnings.push({
-                rule,
-                medA,
-                medB,
-                doseA,
-                doseB,
-                key: `${rule.id}_${medA.id}_${medB.id}`
-              });
+              const alreadyFlagged = warnings.some(w =>
+                w.rule.id === rule.id &&
+                ((w.medA.id === medA.id && w.medB.id === medB.id) ||
+                 (w.medA.id === medB.id && w.medB.id === medA.id))
+              );
+              if (!alreadyFlagged) {
+                warnings.push({
+                  rule,
+                  medA,
+                  medB,
+                  doseA,
+                  doseB,
+                  key: `${rule.id}_${medA.id}_${medB.id}`
+                });
+              }
             }
           }
           // Two-ingredient interaction rule
@@ -360,7 +368,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const crossMatch = (medAhasA && medBhasB) || (medAhasB && medBhasA);
 
             if (crossMatch) {
-              // Check it's not already detected as a duplicate
               const alreadyFlagged = warnings.some(w =>
                 w.rule.id === rule.id &&
                 ((w.medA.id === medA.id && w.medB.id === medB.id) ||
@@ -393,6 +400,78 @@ document.addEventListener('DOMContentLoaded', () => {
       conflictIds.add(w.medB.id);
     });
     return conflictIds;
+  }
+
+  /**
+   * Returns active conflicts (if med is in cabinet) and hypothetical conflicts (if med would be added to cabinet)
+   */
+  function getConflictsForMed(medId) {
+    const currentMeds = Cabinet.getMeds();
+    const med = MED_DATABASE[medId];
+    if (!med) return { active: [], hypothetical: [] };
+
+    const inCabinet = Cabinet.has(medId);
+    let active = [];
+    if (inCabinet) {
+      const activeWarnings = analyzeSafety(currentMeds);
+      active = activeWarnings
+        .filter(w => w.medA.id === medId || w.medB.id === medId)
+        .map(w => ({
+          ...w,
+          otherMed: w.medA.id === medId ? w.medB : w.medA,
+          combinedDose: w.doseA !== null && w.doseB !== null ? `${w.doseA + w.doseB}mg` : null
+        }));
+    }
+
+    let hypothetical = [];
+    if (!inCabinet && currentMeds.length > 0) {
+      const hypotheticalMeds = [...currentMeds, med];
+      const hypoWarnings = analyzeSafety(hypotheticalMeds);
+      hypothetical = hypoWarnings
+        .filter(w => w.medA.id === medId || w.medB.id === medId)
+        .map(w => ({
+          ...w,
+          otherMed: w.medA.id === medId ? w.medB : w.medA,
+          combinedDose: w.doseA !== null && w.doseB !== null ? `${w.doseA + w.doseB}mg` : null
+        }));
+    }
+
+    return { active, hypothetical };
+  }
+
+  // Header Nav Badges
+  function updateNavBadges() {
+    const navMedicines = document.getElementById('navMedicines');
+    const navSafety = document.getElementById('navSafety');
+    const count = Cabinet.count();
+    const warnings = analyzeSafety();
+
+    if (navMedicines) {
+      const existingBadge = navMedicines.querySelector('.nav-count-badge');
+      if (existingBadge) existingBadge.remove();
+      if (count > 0) {
+        const badge = document.createElement('span');
+        badge.className = 'nav-count-badge';
+        badge.textContent = count;
+        navMedicines.appendChild(badge);
+      }
+    }
+
+    if (navSafety) {
+      const existingBadge = navSafety.querySelector('.nav-danger-badge, .nav-safe-badge');
+      if (existingBadge) existingBadge.remove();
+      if (warnings.length > 0) {
+        const badge = document.createElement('span');
+        badge.className = 'nav-danger-badge';
+        badge.textContent = `🚨 ${warnings.length}`;
+        navSafety.appendChild(badge);
+      } else if (count >= 2) {
+        const badge = document.createElement('span');
+        badge.className = 'nav-safe-badge';
+        badge.textContent = '✓';
+        navSafety.appendChild(badge);
+      }
+    }
   }
 
   // ==========================================================================
@@ -488,26 +567,112 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================================================
-  // 8. HOME PAGE RENDERER
+  // ==========================================================================
+  // 8. HOME PAGE RENDERER & CONFLICT DETECTION
   // ==========================================================================
   let activeCategory = 'all';
 
   function renderHomePage() {
+    updateHomeSafetyBanner();
     renderProductGrid();
     attachCategoryPills();
+    updateNavBadges();
     initReveal();
   }
 
   function attachCategoryPills() {
     const pills = document.querySelectorAll('.category-pill');
     pills.forEach(pill => {
-      pill.addEventListener('click', () => {
+      pill.onclick = () => {
         pills.forEach(p => p.classList.remove('active'));
         pill.classList.add('active');
         activeCategory = pill.getAttribute('data-category');
         renderProductGrid();
-      });
+      };
     });
+  }
+
+  // Live Home Safety / Cabinet Conflict Banner
+  function updateHomeSafetyBanner() {
+    const section = document.getElementById('homeSafetySection');
+    const container = document.getElementById('homeSafetyBannerContainer');
+    if (!section || !container) return;
+
+    const count = Cabinet.count();
+    const warnings = analyzeSafety();
+
+    if (count === 0) {
+      section.style.display = 'none';
+      return;
+    }
+
+    section.style.display = 'block';
+
+    if (warnings.length > 0) {
+      // Danger / Conflict active state
+      const conflictSummary = warnings.map(w =>
+        `<span class="conflict-item-chip"><strong>${w.medA.brand}</strong> + <strong>${w.medB.brand}</strong> (${w.rule.title})</span>`
+      ).join('');
+
+      container.innerHTML = `
+        <div class="home-safety-banner banner-danger">
+          <div class="home-safety-banner-icon-wrap">🚨</div>
+          <div class="home-safety-banner-content">
+            <div class="home-safety-banner-title">
+              <span>Contradiction Warning Detected</span>
+              <span class="home-safety-pill danger">${warnings.length} Active Conflict${warnings.length > 1 ? 's' : ''}</span>
+            </div>
+            <div class="home-safety-banner-text">
+              Active ingredient conflict found in your cart/cabinet: ${conflictSummary}. Taking these simultaneously risks duplicate dosing or adverse interactions.
+            </div>
+          </div>
+          <div class="home-safety-banner-actions">
+            <button class="btn-pill btn-sm btn-danger-pill" data-page="safety">View Safety Dashboard</button>
+            <button class="btn-pill btn-sm btn-subtle-pill" data-page="medicines">Manage Cabinet (${count})</button>
+          </div>
+        </div>
+      `;
+    } else if (count >= 2) {
+      // Verified Safe state
+      container.innerHTML = `
+        <div class="home-safety-banner banner-safe">
+          <div class="home-safety-banner-icon-wrap">✓</div>
+          <div class="home-safety-banner-content">
+            <div class="home-safety-banner-title">
+              <span>Cabinet Verified Safe</span>
+              <span class="home-safety-pill safe">${count} Medicines Active</span>
+            </div>
+            <div class="home-safety-banner-text">
+              All medicines currently in your cabinet have distinct active ingredients. No duplicate dosages or adverse interactions detected.
+            </div>
+          </div>
+          <div class="home-safety-banner-actions">
+            <button class="btn-pill btn-sm btn-safe-pill" data-page="medicines">Open Cabinet</button>
+            <button class="btn-pill btn-sm btn-subtle-pill" data-page="safety">Safety Report</button>
+          </div>
+        </div>
+      `;
+    } else {
+      // 1 medicine informational state
+      const firstMed = Cabinet.getMeds()[0];
+      container.innerHTML = `
+        <div class="home-safety-banner banner-info">
+          <div class="home-safety-banner-icon-wrap">💊</div>
+          <div class="home-safety-banner-content">
+            <div class="home-safety-banner-title">
+              <span>${firstMed ? firstMed.brand : '1 Medicine'} in Cabinet</span>
+              <span class="home-safety-pill info">1 Item</span>
+            </div>
+            <div class="home-safety-banner-text">
+              Add another medicine to automatically screen for duplicate active ingredients, dosage limits, and timing conflicts in real time.
+            </div>
+          </div>
+          <div class="home-safety-banner-actions">
+            <button class="btn-pill btn-sm btn-subtle-pill" data-page="medicines">Open Cabinet</button>
+          </div>
+        </div>
+      `;
+    }
   }
 
   function renderProductGrid() {
@@ -523,28 +688,124 @@ document.addEventListener('DOMContentLoaded', () => {
 
     filtered.forEach((med, idx) => {
       const inCabinet = Cabinet.has(med.id);
+      const { active, hypothetical } = getConflictsForMed(med.id);
+
+      const hasActiveConflict = inCabinet && active.length > 0;
+      const isSafeInCabinet = inCabinet && active.length === 0;
+      const wouldConflict = !inCabinet && hypothetical.length > 0;
+
+      let cardStateClass = '';
+      if (hasActiveConflict) cardStateClass = 'in-cabinet has-conflict';
+      else if (isSafeInCabinet) cardStateClass = 'in-cabinet is-safe';
+      else if (wouldConflict) cardStateClass = 'would-conflict';
+
       const card = document.createElement('div');
-      card.className = `home-product-card${inCabinet ? ' in-cabinet' : ''}`;
-      card.style.animationDelay = `${idx * 0.05}s`;
+      card.className = `home-product-card ${cardStateClass}`.trim();
+      card.style.animationDelay = `${idx * 0.04}s`;
+
+      // Status Badge on Top Image
+      let badgeHtml = '';
+      if (hasActiveConflict) {
+        badgeHtml = `
+          <div class="card-conflict-badge" title="Contradiction in your cabinet">
+            <span class="badge-pulse-dot"></span>
+            <span>🚨 Contradiction</span>
+          </div>
+        `;
+      } else if (wouldConflict) {
+        badgeHtml = `
+          <div class="card-potential-badge" title="Conflicts with a medicine in your cabinet">
+            <span>⚠️ Conflict Warning</span>
+          </div>
+        `;
+      } else if (isSafeInCabinet) {
+        badgeHtml = `
+          <div class="card-safe-badge">
+            <span>✓ In Cabinet</span>
+          </div>
+        `;
+      }
+
+      // Conflict Snippet inside body
+      let conflictSnippetHtml = '';
+      if (hasActiveConflict) {
+        const topConflict = active[0];
+        conflictSnippetHtml = `
+          <div class="card-conflict-callout">
+            <div class="conflict-callout-header">🚨 ${topConflict.rule.title}</div>
+            <div class="conflict-callout-detail">
+              Conflicts with <strong>${topConflict.otherMed.brand}</strong>${topConflict.combinedDose ? ` (${topConflict.combinedDose} combined)` : ''}.
+            </div>
+          </div>
+        `;
+      } else if (wouldConflict) {
+        const topHypo = hypothetical[0];
+        conflictSnippetHtml = `
+          <div class="card-potential-callout">
+            <div class="potential-callout-header">⚠️ Warning: Contradiction</div>
+            <div class="potential-callout-detail">
+              Adding this conflicts with <strong>${topHypo.otherMed.brand}</strong> in cabinet (${topHypo.rule.title}).
+            </div>
+          </div>
+        `;
+      }
+
+      // Action buttons
+      let actionButtonsHtml = '';
+      if (hasActiveConflict) {
+        actionButtonsHtml = `
+          <button class="btn-add-medicine in-conflict" data-med-id="${med.id}" aria-label="Conflict detected in cabinet">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span>Contradiction</span>
+          </button>
+          <button class="btn-remove-mini" data-remove-med-id="${med.id}" title="Remove from cabinet" aria-label="Remove ${med.brand}">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        `;
+      } else if (isSafeInCabinet) {
+        actionButtonsHtml = `
+          <button class="btn-add-medicine added" data-med-id="${med.id}" aria-label="Added to cabinet">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Added</span>
+          </button>
+          <button class="btn-remove-mini" data-remove-med-id="${med.id}" title="Remove from cabinet" aria-label="Remove ${med.brand}">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        `;
+      } else if (wouldConflict) {
+        actionButtonsHtml = `
+          <button class="btn-add-medicine warn-add" data-med-id="${med.id}" aria-label="Add medicine (causes conflict)">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            <span>+ Add (+Conflict)</span>
+          </button>
+        `;
+      } else {
+        actionButtonsHtml = `
+          <button class="btn-add-medicine" data-med-id="${med.id}" aria-label="Add to cabinet">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            <span>Add</span>
+          </button>
+        `;
+      }
 
       card.innerHTML = `
         <div class="product-image-box">
           <img src="${med.image}" alt="${med.brand}" class="product-img" loading="lazy">
           <div class="floating-meta-chip">${med.strength}</div>
+          ${badgeHtml}
         </div>
         <div class="product-card-body">
-          <span class="product-category-tag">${med.category}</span>
+          <div class="product-card-header-row">
+            <span class="product-category-tag">${med.category}</span>
+            ${hasActiveConflict ? `<span class="danger-pill-mini">Conflict</span>` : ''}
+          </div>
           <h4 class="product-brand-name">${med.brand}</h4>
           <p class="product-ingredient-line">${Object.keys(med.activeIngredients).join(' · ')}</p>
           <span class="product-strength-tag">${med.strength}</span>
+          ${conflictSnippetHtml}
         </div>
         <div class="product-card-footer">
-          <button class="btn-add-medicine${inCabinet ? ' added' : ''}" data-med-id="${med.id}" aria-label="${inCabinet ? 'Added to cabinet' : 'Add to My Medicines'}">
-            ${inCabinet
-              ? `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Added`
-              : `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add`
-            }
-          </button>
+          ${actionButtonsHtml}
           <button class="btn-detail-icon" data-detail-id="${med.id}" aria-label="View ${med.brand} details">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
@@ -555,14 +816,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Add to cabinet button
       const addBtn = card.querySelector('.btn-add-medicine');
-      addBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        if (!Cabinet.has(med.id)) {
+      if (addBtn && !inCabinet) {
+        addBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
           Cabinet.add(med.id);
+          if (wouldConflict) {
+            showConflictToast(med.brand, hypothetical);
+          } else {
+            showAddToast(med.brand);
+          }
           renderProductGrid();
-          showAddToast(med.brand);
-        }
-      });
+          updateHomeSafetyBanner();
+          updateNavBadges();
+        });
+      } else if (addBtn && hasActiveConflict) {
+        addBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          navigateTo('safety');
+        });
+      }
+
+      // Remove from cabinet button
+      const removeBtn = card.querySelector('.btn-remove-mini');
+      if (removeBtn) {
+        removeBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          Cabinet.remove(med.id);
+          renderProductGrid();
+          updateHomeSafetyBanner();
+          updateNavBadges();
+        });
+      }
 
       // Detail button
       const detailBtn = card.querySelector('.btn-detail-icon');
@@ -587,23 +871,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Toast notification
+  // Toast notifications
   function showAddToast(brandName) {
     let toast = document.getElementById('addToast');
     if (!toast) {
       toast = document.createElement('div');
       toast.id = 'addToast';
-      toast.style.cssText = `
-        position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
-        background: var(--btn-dark); color: #fff; padding: 12px 20px;
-        border-radius: 999px; font-family: var(--font-heading); font-size: 0.875rem;
-        font-weight: 600; z-index: 9999; box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-        display: flex; align-items: center; gap: 8px;
-        transition: all 0.3s var(--ease-spring);
-      `;
+      toast.className = 'site-toast safe-toast';
       document.body.appendChild(toast);
     }
-    toast.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> ${brandName} added to cabinet`;
+    toast.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> <span><strong>${brandName}</strong> added to cabinet</span>`;
     toast.style.opacity = '1';
     toast.style.visibility = 'visible';
     clearTimeout(toast._timer);
@@ -613,12 +890,53 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 2500);
   }
 
+  function showConflictToast(brandName, conflicts) {
+    let toast = document.getElementById('conflictToast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'conflictToast';
+      toast.className = 'site-toast conflict-toast';
+      document.body.appendChild(toast);
+    }
+
+    const topConflict = conflicts[0];
+    const otherName = topConflict ? topConflict.otherMed.brand : 'another medicine';
+    const reason = topConflict ? topConflict.rule.title : 'Duplicate ingredient';
+
+    toast.innerHTML = `
+      <div class="toast-conflict-inner">
+        <div class="toast-conflict-icon">🚨</div>
+        <div class="toast-conflict-text">
+          <strong>Contradiction Warning!</strong>
+          <span><strong>${brandName}</strong> conflicts with <strong>${otherName}</strong> (${reason}).</span>
+        </div>
+        <button class="toast-conflict-action" id="toastReviewBtn">Review Safety</button>
+      </div>
+    `;
+
+    document.getElementById('toastReviewBtn')?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toast.style.opacity = '0';
+      toast.style.visibility = 'hidden';
+      navigateTo('safety');
+    });
+
+    toast.style.opacity = '1';
+    toast.style.visibility = 'visible';
+    clearTimeout(toast._timer);
+    toast._timer = setTimeout(() => {
+      toast.style.opacity = '0';
+      toast.style.visibility = 'hidden';
+    }, 5000);
+  }
+
   // ==========================================================================
   // 9. MEDICINES PAGE RENDERER
   // ==========================================================================
   function renderMedicinesPage() {
     renderCabinetGrid();
     updateInlineSafetyBanner();
+    updateNavBadges();
   }
 
   function renderCabinetGrid() {
@@ -677,9 +995,10 @@ document.addEventListener('DOMContentLoaded', () => {
       removeBtn.addEventListener('click', () => {
         Cabinet.remove(med.id);
         renderMedicinesPage();
-        // Also re-render home grid if visible
+        // Also re-render home grid if on home or when returning
         if (document.getElementById('page-home').classList.contains('active')) {
           renderProductGrid();
+          updateHomeSafetyBanner();
         }
       });
 
@@ -713,6 +1032,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const meds = Cabinet.getMeds();
     const warnings = analyzeSafety();
+    updateNavBadges();
 
     if (meds.length < 2) {
       statusCard.style.display = 'none';
@@ -844,7 +1164,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================================================
-  // 11. UPLOAD MODAL
+  // 11. UPLOAD & SCAN MODAL (WITH CONFLICT AWARENESS)
   // ==========================================================================
   const uploadModal = document.getElementById('uploadModal');
   const closeUploadModal = document.getElementById('closeUploadModal');
@@ -888,19 +1208,22 @@ document.addEventListener('DOMContentLoaded', () => {
   if (emptyUploadBtn) emptyUploadBtn.addEventListener('click', openUploadModalFn);
   if (closeUploadModal) closeUploadModal.addEventListener('click', closeUploadModalFn);
 
-  // Also open upload from header scan button when on medicines page
+  // Also open upload from header scan button
   const headerScanBtn = document.getElementById('headerScanBtn');
   if (headerScanBtn) {
     headerScanBtn.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
-      const currentPage = document.querySelector('.page.active')?.id;
-      if (currentPage === 'page-medicines') {
-        openUploadModalFn();
-      } else {
-        navigateTo('medicines');
-        setTimeout(openUploadModalFn, 300);
-      }
+      openUploadModalFn();
+    });
+  }
+
+  const heroScanBtn = document.getElementById('heroScanBtn');
+  if (heroScanBtn) {
+    heroScanBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      openUploadModalFn();
     });
   }
 
@@ -973,7 +1296,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'Reading label…',
     'Detecting brand name…',
     'Extracting active ingredients…',
-    'Matching database…',
+    'Checking conflict rules…',
     'Verification complete ✓'
   ];
 
@@ -985,7 +1308,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (dropZoneScanning) dropZoneScanning.style.display = 'block';
       if (dropZoneResult) dropZoneResult.style.display = 'none';
 
-      // Cycle through OCR status messages
       let step = 0;
       const statusInterval = setInterval(() => {
         if (ocrStatusText && step < ocrSteps.length) {
@@ -993,14 +1315,14 @@ document.addEventListener('DOMContentLoaded', () => {
           step++;
         } else {
           clearInterval(statusInterval);
-          // Pick a random unrecognized medicine from DB or use a predictable one
+          // Pick an unrecognized medicine or one with interesting conflict
           const allIds = Object.keys(MED_DATABASE).filter(id => !Cabinet.has(id));
           const matchedId = allIds.length > 0
             ? allIds[Math.floor(Math.random() * allIds.length)]
             : Object.keys(MED_DATABASE)[0];
           showScanResult(matchedId);
         }
-      }, 500);
+      }, 400);
     };
     reader.readAsDataURL(file);
   }
@@ -1014,6 +1336,9 @@ document.addEventListener('DOMContentLoaded', () => {
     dropZoneResult.style.display = 'block';
 
     const alreadyAdded = Cabinet.has(medId);
+    const { hypothetical } = getConflictsForMed(medId);
+    const wouldConflict = !alreadyAdded && hypothetical.length > 0;
+
     dropZoneResult.innerHTML = `
       <div style="margin-bottom: 12px; font-family: var(--font-heading); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--safe-green);">
         ✓ Medicine Identified
@@ -1026,10 +1351,20 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="scan-result-info" style="margin-top: 4px; color: var(--text-muted);">${med.category} · ${med.strength}</div>
         </div>
       </div>
+
+      ${wouldConflict ? `
+        <div class="scan-conflict-alert">
+          <div class="scan-conflict-icon">🚨</div>
+          <div class="scan-conflict-text">
+            <strong>Contradiction Warning:</strong> Adding ${med.brand} conflicts with <strong>${hypothetical.map(h => h.otherMed.brand).join(', ')}</strong> in your cabinet (${hypothetical[0].rule.title}).
+          </div>
+        </div>
+      ` : ''}
+
       <div class="scan-result-actions">
         <button class="btn-scan-again" id="btnScanAgain">Scan Another</button>
-        <button class="btn-pill btn-primary btn-sm" id="btnConfirmAdd" ${alreadyAdded ? 'disabled style="background: var(--safe-green)"' : ''}>
-          ${alreadyAdded ? '✓ Already Added' : 'Add to Cabinet'}
+        <button class="btn-pill ${wouldConflict ? 'btn-danger-pill' : 'btn-primary'} btn-sm" id="btnConfirmAdd" ${alreadyAdded ? 'disabled style="background: var(--safe-green)"' : ''}>
+          ${alreadyAdded ? '✓ Already in Cabinet' : wouldConflict ? '⚠️ Add (+Conflict)' : 'Add to Cabinet'}
         </button>
       </div>
     `;
@@ -1042,8 +1377,14 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('btnConfirmAdd')?.addEventListener('click', () => {
       if (!Cabinet.has(medId)) {
         Cabinet.add(medId);
-        showAddToast(med.brand);
+        if (wouldConflict) {
+          showConflictToast(med.brand, hypothetical);
+        } else {
+          showAddToast(med.brand);
+        }
         renderMedicinesPage();
+        renderProductGrid();
+        updateHomeSafetyBanner();
         closeUploadModalFn();
       }
     });
@@ -1071,15 +1412,26 @@ document.addEventListener('DOMContentLoaded', () => {
     searchResultsList.innerHTML = '';
     filtered.slice(0, 12).forEach(med => {
       const inCabinet = Cabinet.has(med.id);
+      const { active, hypothetical } = getConflictsForMed(med.id);
+      const hasConflict = inCabinet && active.length > 0;
+      const wouldConflict = !inCabinet && hypothetical.length > 0;
+
+      let conflictTag = '';
+      if (hasConflict) {
+        conflictTag = `<span class="search-conflict-pill danger">🚨 Conflict</span>`;
+      } else if (wouldConflict) {
+        conflictTag = `<span class="search-conflict-pill warning">⚠️ Conflicts with ${hypothetical[0].otherMed.brand}</span>`;
+      }
+
       const item = document.createElement('div');
       item.className = 'search-result-item';
       item.innerHTML = `
         <img src="${med.image}" alt="${med.brand}" class="search-result-img" loading="lazy">
         <div class="search-result-body">
-          <div class="search-result-brand">${med.brand}</div>
+          <div class="search-result-brand">${med.brand} ${conflictTag}</div>
           <div class="search-result-sub">${Object.keys(med.activeIngredients).join(' · ')} · ${med.strength}</div>
         </div>
-        <button class="search-result-add${inCabinet ? ' added' : ''}" data-search-add-id="${med.id}" aria-label="${inCabinet ? 'Already added' : `Add ${med.brand}`}" ${inCabinet ? 'disabled' : ''}>
+        <button class="search-result-add${inCabinet ? ' added' : wouldConflict ? ' warn' : ''}" data-search-add-id="${med.id}" aria-label="${inCabinet ? 'Already added' : `Add ${med.brand}`}" ${inCabinet ? 'disabled' : ''}>
           ${inCabinet
             ? `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>`
             : `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>`
@@ -1088,20 +1440,25 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
 
       const addBtn = item.querySelector('.search-result-add');
+      const addHandler = (e) => {
+        e.stopPropagation();
+        if (!inCabinet) {
+          Cabinet.add(med.id);
+          if (wouldConflict) {
+            showConflictToast(med.brand, hypothetical);
+          } else {
+            showAddToast(med.brand);
+          }
+          renderSearchResults(searchInput?.value || '');
+          renderMedicinesPage();
+          renderProductGrid();
+          updateHomeSafetyBanner();
+        }
+      };
+
       if (!inCabinet) {
-        addBtn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          Cabinet.add(med.id);
-          showAddToast(med.brand);
-          renderSearchResults(searchInput?.value || '');
-          renderMedicinesPage();
-        });
-        item.addEventListener('click', () => {
-          Cabinet.add(med.id);
-          showAddToast(med.brand);
-          renderSearchResults(searchInput?.value || '');
-          renderMedicinesPage();
-        });
+        addBtn.addEventListener('click', addHandler);
+        item.addEventListener('click', addHandler);
       }
 
       searchResultsList.appendChild(item);
@@ -1113,7 +1470,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================================================
-  // 12. DETAIL MODAL
+  // 12. DETAIL MODAL (WITH ACTIVE & POTENTIAL CONFLICTS)
   // ==========================================================================
   const detailModal = document.getElementById('detailModal');
   const closeDetailModal = document.getElementById('closeDetailModal');
@@ -1124,11 +1481,39 @@ document.addEventListener('DOMContentLoaded', () => {
     const med = MED_DATABASE[medId];
     if (!med || !detailModal) return;
 
-    const warnings = analyzeSafety();
-    const conflictWarnings = warnings.filter(w => w.medA.id === medId || w.medB.id === medId);
     const inCabinet = Cabinet.has(medId);
+    const { active, hypothetical } = getConflictsForMed(medId);
+    const hasActiveConflict = inCabinet && active.length > 0;
+    const wouldConflict = !inCabinet && hypothetical.length > 0;
 
     if (detailModalTitle) detailModalTitle.textContent = med.brand;
+
+    let noticeHtml = '';
+    if (hasActiveConflict) {
+      noticeHtml = `
+        <div class="detail-conflict-notice">
+          <div class="detail-conflict-icon">🚨</div>
+          <div class="detail-conflict-text">
+            <strong>Contradiction detected in your cabinet!</strong> This medicine shares active ingredients with <strong>${active.map(w => w.otherMed.brand).join(', ')}</strong> (${active[0].rule.title}${active[0].combinedDose ? ` · ${active[0].combinedDose} combined` : ''}). Taking both creates a stacked dose hazard. View Safety Dashboard for details.
+          </div>
+        </div>
+      `;
+    } else if (wouldConflict) {
+      noticeHtml = `
+        <div class="detail-potential-notice">
+          <div class="detail-conflict-icon">⚠️</div>
+          <div class="detail-conflict-text">
+            <strong>Contradiction Warning:</strong> Adding this medicine will create a conflict with <strong>${hypothetical.map(h => h.otherMed.brand).join(', ')}</strong> already in your cabinet (${hypothetical[0].rule.title}${hypothetical[0].combinedDose ? ` · ${hypothetical[0].combinedDose} combined` : ''}).
+          </div>
+        </div>
+      `;
+    } else if (inCabinet && Cabinet.count() >= 2) {
+      noticeHtml = `
+        <div style="background: var(--safe-green-soft); border: 1px solid rgba(16,185,129,0.2); border-radius: var(--radius-md); padding: 12px 14px; font-size: 0.8125rem; color: #047857; font-weight: 500;">
+          ✓ No conflicts detected with your current cabinet medicines.
+        </div>
+      `;
+    }
 
     detailModalBody.innerHTML = `
       <div class="detail-med-header">
@@ -1150,24 +1535,15 @@ document.addEventListener('DOMContentLoaded', () => {
         `).join('')}
       </div>
 
-      ${conflictWarnings.length > 0 ? `
-        <div class="detail-conflict-notice">
-          <div class="detail-conflict-icon">⚠️</div>
-          <div class="detail-conflict-text">
-            <strong>Conflict detected in your cabinet.</strong> This medicine shares active ingredients with ${conflictWarnings.map(w => w.medA.id === medId ? w.medB.brand : w.medA.brand).join(', ')}. View the Safety Dashboard for full details.
-          </div>
-        </div>
-      ` : inCabinet && Cabinet.count() >= 2 ? `
-        <div style="background: var(--safe-green-soft); border: 1px solid rgba(16,185,129,0.2); border-radius: var(--radius-md); padding: 12px 14px; font-size: 0.8125rem; color: #047857; font-weight: 500;">
-          ✓ No conflicts detected with your current medicines.
-        </div>
-      ` : ''}
+      ${noticeHtml}
 
       <div>
-        <button class="btn-pill btn-large btn-primary${inCabinet ? ' added' : ''}" id="detailAddBtn" style="width: 100%;" ${inCabinet ? 'disabled' : ''}>
+        <button class="btn-pill btn-large ${wouldConflict ? 'btn-danger-pill' : 'btn-primary'}${inCabinet ? ' added' : ''}" id="detailAddBtn" style="width: 100%;" ${inCabinet ? 'disabled' : ''}>
           ${inCabinet
-            ? `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Added to Cabinet`
-            : `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add to My Medicines`
+            ? `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> ${hasActiveConflict ? 'In Cabinet (Conflict Detected)' : 'Added to Cabinet'}`
+            : wouldConflict
+              ? `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add to Cabinet (Causes Conflict)`
+              : `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add to My Medicines`
           }
         </button>
         ${inCabinet ? `<div style="margin-top: 8px;"><button class="btn-pill" id="detailRemoveBtn" style="width: 100%; padding: 10px; background: var(--bg-main); color: var(--text-secondary); border: 1px solid var(--surface-border); font-family: var(--font-heading); font-size: 0.8125rem; font-weight: 600; border-radius: var(--radius-pill); cursor: pointer;">Remove from Cabinet</button></div>` : ''}
@@ -1177,9 +1553,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!inCabinet) {
       document.getElementById('detailAddBtn')?.addEventListener('click', () => {
         Cabinet.add(medId);
-        showAddToast(med.brand);
-        openDetailModal(medId); // Re-render detail with updated state
+        if (wouldConflict) {
+          showConflictToast(med.brand, hypothetical);
+        } else {
+          showAddToast(med.brand);
+        }
+        openDetailModal(medId);
         renderProductGrid();
+        updateHomeSafetyBanner();
         renderMedicinesPage();
       });
     }
@@ -1188,6 +1569,7 @@ document.addEventListener('DOMContentLoaded', () => {
       Cabinet.remove(medId);
       openDetailModal(medId);
       renderProductGrid();
+      updateHomeSafetyBanner();
       renderMedicinesPage();
     });
 
